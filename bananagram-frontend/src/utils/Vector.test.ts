@@ -1,4 +1,4 @@
-import { createVector, vectorToString, stringToVector } from './Vector';
+import { createVector, vectorToKey, keyToVector } from './Vector';
 
 describe('Vector', () => {
   describe('createVector', () => {
@@ -9,17 +9,17 @@ describe('Vector', () => {
 
   describe('vectorToString', () => {
     it('should return a string representation of a vector', () => {
-      expect(vectorToString({ x: 1, y: 2 })).toBe(`1-2`);
+      expect(vectorToKey({ x: 1, y: 2 })).toBe(`1-2`);
     });
   });
 
   describe('stringToVector', () => {
     it('should return a vector obtained from a string', () => {
-      expect(stringToVector('1-2')).toEqual({ x: 1, y: 2 });
+      expect(keyToVector('1-2')).toEqual({ x: 1, y: 2 });
     });
 
     it('should thrown an error if string is not in the format ${x}-${y}', () => {
-      expect(() => stringToVector('fail-2')).toThrow();
+      expect(() => keyToVector('fail-2')).toThrow();
     });
   });
 });

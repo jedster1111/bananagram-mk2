@@ -7,6 +7,6 @@ export interface Pieces {
   [vectorString: string]: Piece | undefined;
 }
 
-interface Piece {
+export interface Piece {
   value: ReactNode;
 }
