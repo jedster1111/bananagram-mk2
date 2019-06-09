@@ -1,4 +1,6 @@
 {
+  "eslint.workingDirectories": ["./bananagram-frontend"],
+  "eslint.options": { "configFile": ".eslintrc.json" },
   "eslint.validate": [
     "javascript",
     "javascriptreact",
@@ -10,5 +12,5 @@
       "language": "typescriptreact",
       "autoFix": true
     }
-  ],
+  ]
 }
