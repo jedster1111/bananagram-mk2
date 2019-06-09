@@ -1,0 +1,19 @@
+{
+  "name": "bananagram",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/jedster1111/bananagram-mk2.git",
+  "author": "jthompson <jedster111@hotmail.co.uk>",
+  "license": "MIT",
+  "devDependencies": {
+    "husky": "^2.4.0"
+  },
+  "scripts": {
+    "lint:check": "cd bananagram-frontend && yarn lint:check"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint:check"
+    }
+  }
+}
