@@ -1,4 +1,6 @@
 {
+  "private": true,
+  "workspaces": ["bananagram-frontend"],
   "name": "bananagram",
   "version": "1.0.0",
   "main": "index.js",
