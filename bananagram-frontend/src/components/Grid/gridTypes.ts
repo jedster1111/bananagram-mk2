@@ -1,16 +1,16 @@
-import { Vector } from '../../utils/Vector';
 import { Piece } from '../../types';
 
-export interface GridPiece extends Partial<Piece> {
+export interface SquareData {
+  piece?: Piece;
   isSelected: boolean;
 }
-export interface GridPieces {
-  [vectorKey: string]: GridPiece;
+export interface SquaresData {
+  [vectorKey: string]: SquareData;
 }
-export interface GridProps {
-  dimensions: Vector;
-  pieces: GridPieces;
-  offset: Vector;
-}
-export type GridRow = GridPiece[];
+
+export type GridRow = SquareData[];
 export type GridSquares = GridRow[];
+
+export interface SelectedPieces {
+  [id: string]: true;
+}

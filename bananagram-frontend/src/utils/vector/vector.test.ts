@@ -1,4 +1,4 @@
-import { createVector, vectorToKey, keyToVector } from './Vector';
+import { createVector, vectorToKey, keyToVector } from './vector';
 
 describe('Vector', () => {
   describe('createVector', () => {

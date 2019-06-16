@@ -13,6 +13,17 @@
     "styled-components": "^4.3.1",
     "typescript": "3.5.1"
   },
+  "devDependencies": {
+    "@testing-library/react": "^8.0.1",
+    "@types/styled-components": "^4.1.16",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.13.0",
+    "jest-dom": "^3.5.0",
+    "jest-styled-components": "^6.3.3",
+    "prettier": "^1.18.2"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -36,12 +47,10 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "@types/styled-components": "^4.1.16",
-    "eslint": "^5.16.0",
-    "eslint-config-prettier": "^4.3.0",
-    "eslint-plugin-prettier": "^3.1.0",
-    "eslint-plugin-react": "^7.13.0",
-    "prettier": "^1.18.2"
+  "jest": {
+    "resetMocks": true,
+    "collectCoverageFrom": [
+      "src/**/*.{ts,tsx}"
+    ]
   }
 }

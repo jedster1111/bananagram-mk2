@@ -8,5 +8,6 @@ export interface Pieces {
 }
 
 export interface Piece {
+  id: string;
   value: ReactNode;
 }

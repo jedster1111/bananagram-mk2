@@ -1,15 +1,18 @@
-import React, { FC, ReactNode } from 'react';
-import { Vector, createVectorKey } from '../../utils/Vector';
+import React, { FC, useState } from 'react';
 import styled from 'styled-components';
-import {
-  GridProps,
-  GridPiece,
-  GridPieces,
-  GridSquares,
-  GridRow
-} from './gridTypes';
+import { SelectedPieces } from './gridTypes';
+import { GridRow } from './GridRow';
+import { createSquares } from './createSquares';
+import { Vector, createVector } from '../../utils/vector/vector';
+import { Pieces } from '../../types';
 
-const GridWrapper = styled.div`
+interface GridProps {
+  dimensions: Vector;
+  pieces?: Pieces;
+  offset?: Vector;
+}
+
+export const GridWrapper = styled.div`
   grid-area: main;
 
   box-sizing: border-box;
@@ -18,43 +21,23 @@ const GridWrapper = styled.div`
   flex-direction: column;
 `;
 
-const StyledGridSquare = styled.div`
-  border: solid 1px black;
-  flex: 1;
-`;
+export const Grid: FC<GridProps> = ({
+  pieces = {},
+  offset = createVector(0, 0),
+  dimensions
+}) => {
+  const [selectedPieces, setSelectedPiece] = useState<SelectedPieces>({
+    [1]: true,
+    [3]: true
+  });
 
-const StyledGridRow = styled.div`
-  display: flex;
-  flex: 1;
-`;
+  const squares = createSquares(pieces, selectedPieces, dimensions);
 
-export const Grid: FC<GridProps> = ({ pieces, dimensions }) => {
-  const squareData = createSquares(pieces, dimensions);
-  const squares = createRenderSquares(squareData);
-
-  return <GridWrapper>{squares}</GridWrapper>;
-};
-
-function createRenderSquares(squareData: GridPiece[][]): ReactNode {
-  return squareData.map((squareRow, rowIndex) => (
-    <StyledGridRow key={rowIndex}>
-      {squareRow.map((square, colIndex) => (
-        <StyledGridSquare key={colIndex}>{square.value}</StyledGridSquare>
+  return (
+    <GridWrapper>
+      {squares.map((rowData, rowIndex) => (
+        <GridRow key={rowIndex} rowData={rowData} rowIndex={rowIndex} />
       ))}
-    </StyledGridRow>
-  ));
-}
-
-function createSquares(pieces: GridPieces, dimensions: Vector): GridSquares {
-  const squares: GridSquares = [];
-  for (let rowIndex = 0; rowIndex < dimensions.y; rowIndex++) {
-    const row: GridRow = [];
-    for (let colIndex = 0; colIndex < dimensions.x; colIndex++) {
-      const squareKey = createVectorKey(colIndex, rowIndex);
-      const piece = pieces[squareKey] as GridPiece | undefined;
-      row.push({ value: piece && piece.value, isSelected: false });
-    }
-    squares.push(row);
-  }
-  return squares;
-}
+    </GridWrapper>
+  );
+};

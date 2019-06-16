@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 import { Grid } from './Grid';
-import { createVector, createVectorKey } from '../../utils/Vector';
+import { createVector, createVectorKey } from '../../utils/vector/vector';
 
 const StyledGridPage = styled.div`
   display: grid;
@@ -18,18 +18,9 @@ export const GridPage: FC = () => (
     <Grid
       dimensions={createVector(10, 10)}
       pieces={{
-        [createVectorKey(1, 1)]: {
-          isSelected: false,
-          value: '1,1'
-        },
-        [createVectorKey(0, 5)]: {
-          isSelected: false,
-          value: '0,5'
-        },
-        [createVectorKey(4, 7)]: {
-          isSelected: false,
-          value: '4,7'
-        }
+        [createVectorKey(1, 1)]: { id: '1', value: <div>1,1</div> },
+        [createVectorKey(0, 5)]: { id: '2', value: '0,5' },
+        [createVectorKey(4, 7)]: { id: '3', value: '4,7' }
       }}
       offset={createVector(0, 0)}
     />

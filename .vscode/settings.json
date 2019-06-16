@@ -12,5 +12,9 @@
       "language": "typescriptreact",
       "autoFix": true
     }
-  ]
+  ],
+  "cSpell.words": [
+    "testid"
+  ],
+  "coverage-gutters.coverageReportFileName": "bananagram-frontend/coverage/**/index.html"
 }
