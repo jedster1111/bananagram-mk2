@@ -15,7 +15,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint:check"
+      "pre-commit": "yarn lint:check",
+      "post-merge": "yarn"
     }
   }
 }
