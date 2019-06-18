@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import { createSquares } from './createSquares';
 import { createVector, createVectorKey } from '../../utils/vector/vector';
 import { render, fireEvent } from '@testing-library/react';
 import { Grid } from './Grid';
 import { Pieces, Piece } from '../../types';
+
+const cmdClickOptions: Partial<MouseEvent> = { metaKey: true };
 
 describe('Grid', () => {
   describe('Grid', () => {
@@ -56,19 +58,13 @@ describe('Grid', () => {
 
         fireEvent.click(firstSquareToClick);
 
-        expect(firstSquareToClick).toHaveStyleRule(
-          'outline',
-          '3px solid black'
-        );
-        expect(secondSquareToClick).toHaveStyleRule('outline', 'none');
+        assertSquareIsSelected(firstSquareToClick);
+        assertSquareIsNotSelected(secondSquareToClick);
 
         fireEvent.click(secondSquareToClick);
 
-        expect(firstSquareToClick).toHaveStyleRule('outline', 'none');
-        expect(secondSquareToClick).toHaveStyleRule(
-          'outline',
-          '3px solid black'
-        );
+        assertSquareIsNotSelected(firstSquareToClick);
+        assertSquareIsSelected(secondSquareToClick);
       });
 
       it("should allow me to select multiple squares by holding the 'CMD' button", () => {
@@ -78,66 +74,37 @@ describe('Grid', () => {
         const secondSquareToClick = getByText('1-2');
 
         fireEvent.click(firstSquareToClick);
-
-        expect(firstSquareToClick).toHaveStyleRule(
-          'outline',
-          '3px solid black'
-        );
-        expect(secondSquareToClick).toHaveStyleRule('outline', 'none');
-
         // Holding down the CMD key, click again
-        fireEvent.click(secondSquareToClick, { metaKey: true });
+        fireEvent.click(secondSquareToClick, cmdClickOptions);
 
-        expect(firstSquareToClick).toHaveStyleRule(
-          'outline',
-          '3px solid black'
-        );
-        expect(secondSquareToClick).toHaveStyleRule(
-          'outline',
-          '3px solid black'
-        );
+        assertSquareIsSelected(firstSquareToClick);
+        assertSquareIsSelected(secondSquareToClick);
       });
 
       describe('clicking an empty square', () => {
         it("should deselect squares if 'CMD' is NOT pressed", () => {
-          const { getByTestId } = render(<Grid {...defaultProps} />);
+          const { getByText, getByTestId } = render(<Grid {...defaultProps} />);
 
-          const firstSquareToClick = getByTestId('0-0');
-          const secondSquareToClick = getByTestId('1-0');
+          const firstSquareToClick = getByText('0-0');
+          const emptySquareToClick = getByTestId('1-0');
 
           fireEvent.click(firstSquareToClick);
+          fireEvent.click(emptySquareToClick);
 
-          expect(firstSquareToClick).toHaveStyleRule(
-            'outline',
-            '3px solid black'
-          );
-          expect(secondSquareToClick).toHaveStyleRule('outline', 'none');
-
-          fireEvent.click(secondSquareToClick);
-          expect(firstSquareToClick).toHaveStyleRule('outline', 'none');
-          expect(secondSquareToClick).toHaveStyleRule('outline', 'none');
+          assertSquareIsNotSelected(firstSquareToClick);
+          assertSquareIsNotSelected(emptySquareToClick);
         });
 
         it("should NOT deselect squares if 'CMD' is pressed", () => {
-          const { getByTestId } = render(<Grid {...defaultProps} />);
+          const { getByText, getByTestId } = render(<Grid {...defaultProps} />);
 
-          const firstSquareToClick = getByTestId('0-0');
-          const secondSquareToClick = getByTestId('1-0');
+          const firstSquareToClick = getByText('0-0');
+          const emptySquareToClick = getByTestId('1-0');
 
           fireEvent.click(firstSquareToClick);
-
-          expect(firstSquareToClick).toHaveStyleRule(
-            'outline',
-            '3px solid black'
-          );
-          expect(secondSquareToClick).toHaveStyleRule('outline', 'none');
-
-          fireEvent.click(secondSquareToClick, { metaKey: true });
-          expect(firstSquareToClick).toHaveStyleRule(
-            'outline',
-            '3px solid black'
-          );
-          expect(secondSquareToClick).toHaveStyleRule('outline', 'none');
+          fireEvent.click(emptySquareToClick, cmdClickOptions);
+          assertSquareIsSelected(firstSquareToClick);
+          assertSquareIsNotSelected(emptySquareToClick);
         });
       });
 
@@ -148,23 +115,11 @@ describe('Grid', () => {
         const secondSquareToClick = getByText('1-2');
 
         fireEvent.click(firstSquareToClick);
-        fireEvent.click(secondSquareToClick, { metaKey: true });
+        fireEvent.click(secondSquareToClick, cmdClickOptions);
+        fireEvent.click(secondSquareToClick, cmdClickOptions);
 
-        expect(firstSquareToClick).toHaveStyleRule(
-          'outline',
-          '3px solid black'
-        );
-        expect(secondSquareToClick).toHaveStyleRule(
-          'outline',
-          '3px solid black'
-        );
-
-        fireEvent.click(secondSquareToClick, { metaKey: true });
-        expect(firstSquareToClick).toHaveStyleRule(
-          'outline',
-          '3px solid black'
-        );
-        expect(secondSquareToClick).toHaveStyleRule('outline', 'none');
+        assertSquareIsSelected(firstSquareToClick);
+        assertSquareIsNotSelected(secondSquareToClick);
       });
     });
   });
@@ -197,3 +152,11 @@ describe('Grid', () => {
     });
   });
 });
+
+function assertSquareIsNotSelected(squareToClick: HTMLElement): void {
+  expect(squareToClick).toHaveStyleRule('outline', 'none');
+}
+
+function assertSquareIsSelected(squareToClick: HTMLElement): void {
+  expect(squareToClick).toHaveStyleRule('outline', '3px solid black');
+}

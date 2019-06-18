@@ -29,8 +29,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test:ci": "CI=true react-scripts test --coverage",
-    "test:coverage": "react-scripts test --coverage",
+    "test:ci": "yarn lint:check && CI=true react-scripts test --coverage",
+    "test:coverage": "CI=true react-scripts test --coverage",
     "lint:fix": "eslint './src/**/*.{ts,tsx}' --fix",
     "lint:check": "eslint './src/**/*.{ts,tsx}'"
   },

@@ -15,6 +15,7 @@ const StyledGridPage = styled.div`
 
 export const GridPage: FC = () => (
   <StyledGridPage>
+    <header>Grid Page</header>
     <Grid
       dimensions={createVector(10, 10)}
       pieces={{
