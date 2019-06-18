@@ -20,6 +20,7 @@
     "eslint-config-prettier": "^4.3.0",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.13.0",
+    "eslint-plugin-react-hooks": "^1.6.0",
     "jest-dom": "^3.5.0",
     "jest-styled-components": "^6.3.3",
     "prettier": "^1.18.2"
@@ -28,7 +29,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "test:ci": "CI=true react-scripts test --coverage",
+    "test:coverage": "react-scripts test --coverage",
     "lint:fix": "eslint './src/**/*.{ts,tsx}' --fix",
     "lint:check": "eslint './src/**/*.{ts,tsx}'"
   },

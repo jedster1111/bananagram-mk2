@@ -19,7 +19,7 @@ export const GridPage: FC = () => (
       dimensions={createVector(10, 10)}
       pieces={{
         [createVectorKey(1, 1)]: { id: '1', value: <div>1,1</div> },
-        [createVectorKey(0, 5)]: { id: '2', value: '0,5' },
+        [createVectorKey(2, 1)]: { id: '2', value: '2,1' },
         [createVectorKey(4, 7)]: { id: '3', value: '4,7' }
       }}
       offset={createVector(0, 0)}

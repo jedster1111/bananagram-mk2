@@ -6,7 +6,7 @@
     "prettier/@typescript-eslint",
     "plugin:prettier/recommended"
   ],
-  "plugins": ["react", "@typescript-eslint", "prettier"],
+  "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
   "env": {
     "browser": true,
     "jasmine": true,
@@ -17,6 +17,8 @@
     "prettier/prettier": ["error", { "singleQuote": true }],
     "no-console": "warn",
     "react/prop-types": 0,
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
     "@typescript-eslint/explicit-function-return-type": [
       "error",
       {
