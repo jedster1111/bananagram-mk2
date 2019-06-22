@@ -1,8 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 import { SquareData } from './gridTypes';
 import styled from 'styled-components';
-import { GridSquare } from './GridSquare';
-import { createVector } from '../../utils/vector/vector';
+import { MemoGridSquare } from './GridSquare';
 
 interface GridRowProps {
   rowData: SquareData[];
@@ -19,19 +18,22 @@ const StyledGridRow = styled.div`
   flex: 1;
 `;
 
-export const GridRow: FC<GridRowProps> = ({
+const GridRow: FC<GridRowProps> = ({
   rowData,
   rowIndex,
   handleSquareClick
-}) => (
-  <StyledGridRow data-testid={rowIndex}>
-    {rowData.map((squareData, colIndex) => (
-      <GridSquare
-        key={colIndex}
-        squareData={squareData}
-        position={createVector(colIndex, rowIndex)}
-        handleSquareClick={handleSquareClick}
-      />
-    ))}
-  </StyledGridRow>
-);
+}) => {
+  return (
+    <StyledGridRow data-testid={rowIndex}>
+      {rowData.map((squareData, colIndex) => (
+        <MemoGridSquare
+          key={colIndex}
+          squareData={squareData}
+          handleSquareClick={handleSquareClick}
+        />
+      ))}
+    </StyledGridRow>
+  );
+};
+
+export const MemoGridRow: FC<GridRowProps> = memo(GridRow);

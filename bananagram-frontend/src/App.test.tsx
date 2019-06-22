@@ -7,7 +7,6 @@ describe('App', () => {
     const { getByText } = render(<App />);
 
     getByText('Header');
-    getByText('Grid Page');
     getByText('Footer');
   });
 });
