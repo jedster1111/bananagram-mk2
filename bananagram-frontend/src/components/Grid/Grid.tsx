@@ -23,8 +23,8 @@ export const GridWrapper = styled.div`
   height: 100%;
   box-sizing: border-box;
   border: solid 1px black;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-auto-rows: 1fr;
 `;
 
 export const Grid: FC<GridProps> = memo(

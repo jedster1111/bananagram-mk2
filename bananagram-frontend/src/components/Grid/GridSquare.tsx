@@ -17,6 +17,7 @@ const StyledGridSquare = styled.div<{ isSelected: boolean; isPiece: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
 
   box-sizing: border-box;
   border: solid black 1px;
@@ -29,10 +30,10 @@ const StyledGridSquare = styled.div<{ isSelected: boolean; isPiece: boolean }>`
 
 const GridSquare: FC<GridSquareProps> = ({ squareData, handleSquareClick }) => {
   const piece = squareData.piece;
+  const value = squareData.piece && squareData.piece.value;
   const handleClick = (e: MouseEvent): void =>
     handleSquareClick(piece && piece.id, squareData.isSelected, e.metaKey);
 
-  const value = squareData.piece && squareData.piece.value;
   return (
     <StyledGridSquare
       data-testid={'grid-square'}
