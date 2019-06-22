@@ -16,7 +16,8 @@ export function createSquares(
     for (let colIndex = 0; colIndex < dimensions.x; colIndex++) {
       const squareKey = createVectorKey(colIndex, rowIndex);
       const piece = pieces[squareKey] as Piece | undefined;
-      row.push(memoCreateSquareData(piece, selectedPieces));
+      const isSelected = Boolean(piece && selectedPieces[piece.id]);
+      row.push(memoCreateSquareData(piece, isSelected));
     }
     squares.push(row);
   }
@@ -25,10 +26,10 @@ export function createSquares(
 
 function createSquareData(
   piece: Piece | undefined,
-  selectedPieces: SelectedPieces
+  isSelected: boolean
 ): SquareData {
   return {
     piece,
-    isSelected: Boolean(piece && selectedPieces[piece.id])
+    isSelected
   };
 }
