@@ -2,6 +2,7 @@ import React, { FC, memo } from 'react';
 import { SquareData } from './gridTypes';
 import styled from 'styled-components';
 import { MemoGridSquare } from './GridSquare';
+import shallowEquals from '../../utils/shallowEquals';
 
 interface GridRowProps {
   rowData: SquareData[];
@@ -36,4 +37,15 @@ const GridRow: FC<GridRowProps> = ({
   );
 };
 
-export const MemoGridRow: FC<GridRowProps> = memo(GridRow);
+export const MemoGridRow: FC<GridRowProps> = memo(
+  GridRow,
+  (
+    { rowData: prevRowData, ...prevProps },
+    { rowData: nextRowData, ...nextProps }
+  ) => {
+    return (
+      shallowEquals(prevProps, nextProps) &&
+      shallowEquals(prevRowData, nextRowData)
+    );
+  }
+);
