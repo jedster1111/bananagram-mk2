@@ -16,7 +16,9 @@
   "husky": {
     "hooks": {
       "pre-commit": "yarn lint:check",
-      "post-merge": "yarn"
+      "commit-msg": "./scripts/checkGitMessage.sh $HUSKY_GIT_PARAMS",
+      "post-merge": "yarn",
+      "post-checkout": "yarn"
     }
   }
 }
