@@ -1,11 +1,5 @@
 import { Vector, createVectorKey } from '../../utils/vector/vector';
-import {
-  SquareData,
-  SquaresData,
-  GridSquares,
-  GridRow,
-  SelectedPieces
-} from './gridTypes';
+import { GridSquares, GridRow, SelectedPieces } from './gridTypes';
 import { Pieces, Piece } from '../../types';
 
 export function createSquares(

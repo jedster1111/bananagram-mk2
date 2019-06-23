@@ -7,6 +7,11 @@ import { createVector } from '../../utils/vector/vector';
 interface GridRowProps {
   rowData: SquareData[];
   rowIndex: number;
+  handleSquareClick: (
+    id: string | undefined,
+    isSelected: boolean,
+    isCmdPressed: boolean
+  ) => void;
 }
 
 const StyledGridRow = styled.div`
@@ -14,13 +19,18 @@ const StyledGridRow = styled.div`
   flex: 1;
 `;
 
-export const GridRow: FC<GridRowProps> = ({ rowData, rowIndex }) => (
+export const GridRow: FC<GridRowProps> = ({
+  rowData,
+  rowIndex,
+  handleSquareClick
+}) => (
   <StyledGridRow data-testid={rowIndex}>
     {rowData.map((squareData, colIndex) => (
       <GridSquare
         key={colIndex}
         squareData={squareData}
         position={createVector(colIndex, rowIndex)}
+        handleSquareClick={handleSquareClick}
       />
     ))}
   </StyledGridRow>

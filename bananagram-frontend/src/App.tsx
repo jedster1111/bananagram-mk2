@@ -15,10 +15,10 @@ const AppWrapper = styled.div`
 
 const App: React.FC = () => {
   return (
-    <AppWrapper>
-      Header
+    <AppWrapper data-testid="App">
+      <header>Header</header>
       <GridPage />
-      Footer
+      <footer>Footer</footer>
     </AppWrapper>
   );
 };

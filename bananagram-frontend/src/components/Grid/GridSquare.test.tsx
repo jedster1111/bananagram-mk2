@@ -5,9 +5,11 @@ import { createVector, vectorToKey } from '../../utils/vector/vector';
 
 describe('GridSquare', () => {
   const position = createVector(0, 0);
+  const handleSquareClick = jest.fn();
   const positionKey = vectorToKey(position);
   const defaultProps = {
-    position
+    position,
+    handleSquareClick
   };
 
   describe('value', () => {
@@ -42,21 +44,24 @@ describe('GridSquare', () => {
     });
   });
 
-  describe('border-width', () => {
-    it('should be 3px when selected', () => {
+  describe('outline', () => {
+    it("should be '3px solid black' when selected", () => {
       const { getByTestId } = render(
         <GridSquare {...defaultProps} squareData={{ isSelected: true }} />
       );
 
-      expect(getByTestId(positionKey)).toHaveStyleRule('border-width', '3px');
+      expect(getByTestId(positionKey)).toHaveStyleRule(
+        'outline',
+        '3px solid black'
+      );
     });
 
-    it('should be 1px when NOT selected', () => {
+    it("should be 'none' when NOT selected", () => {
       const { getByTestId } = render(
         <GridSquare {...defaultProps} squareData={{ isSelected: false }} />
       );
 
-      expect(getByTestId(positionKey)).toHaveStyleRule('border-width', '1px');
+      expect(getByTestId(positionKey)).toHaveStyleRule('outline', 'none');
     });
   });
 });
