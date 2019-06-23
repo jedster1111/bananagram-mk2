@@ -16,6 +16,8 @@
   "rules": {
     "prettier/prettier": ["error", { "singleQuote": true }],
     "no-console": "warn",
+    "no-useless-computed-key":"error",
+    "no-var": "error",
     "react/prop-types": 0,
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
@@ -27,7 +29,8 @@
       }
     ],
     "@typescript-eslint/no-use-before-define": ["error", { "functions": false }],
-    "@typescript-eslint/explicit-member-accessibility": 0
+    "@typescript-eslint/explicit-member-accessibility": 0,
+    "@typescript-eslint/no-explicit-any": 0
   },
   "settings": {
     "react": {

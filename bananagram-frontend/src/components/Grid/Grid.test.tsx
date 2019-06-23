@@ -1,9 +1,13 @@
 import React, { MouseEvent } from 'react';
 import { createSquares } from './createSquares';
-import { createVector, createVectorKey } from '../../utils/vector/vector';
 import { render, fireEvent } from '@testing-library/react';
+import {
+  createVector,
+  createVectorKey,
+  getVectorArea
+} from '../../utils/vector/vector';
 import { Grid } from './Grid';
-import { Pieces, Piece } from '../../types';
+import { Pieces } from '../../types';
 
 const cmdClickOptions: Partial<MouseEvent> = { metaKey: true };
 
@@ -23,30 +27,43 @@ describe('Grid', () => {
     };
 
     it('should render an empty grid', () => {
-      const { getByTestId } = render(
+      const { getAllByTestId } = render(
         <Grid {...defaultProps} pieces={undefined} />
       );
 
-      for (let x = 0; x < 5; x++) {
-        for (let y = 0; y < 5; y++) {
-          const square = getByTestId(createVectorKey(x, y));
-          expect(square.textContent).toBe('');
-        }
-      }
+      const squares = getAllByTestId('grid-square');
+      squares.forEach(square => {
+        expect(square).toHaveTextContent(/^$/);
+      });
+
+      expect(squares).toHaveLength(getVectorArea(dimensions));
     });
 
     it('should render a grid with values passed in', () => {
-      const { getByTestId } = render(<Grid {...defaultProps} />);
+      const pieces: Pieces = {
+        [createVectorKey(0, 0)]: { id: '1', value: '0-0' },
+        [createVectorKey(1, 2)]: {
+          id: '2',
+          value: '1-2'
+        },
+        [createVectorKey(3, 4)]: { id: '3', value: '3-4' }
+      };
 
-      for (let x = 0; x < dimensions.x; x++) {
-        for (let y = 0; y < dimensions.y; y++) {
-          const vectorKey = createVectorKey(x, y);
-          const square = getByTestId(vectorKey);
-          const gridPiece = defaultProps.pieces[vectorKey] as Piece | undefined;
+      const { getAllByTestId } = render(
+        <Grid {...defaultProps} pieces={pieces} />
+      );
 
-          expect(square.textContent).toBe((gridPiece && gridPiece.value) || '');
-        }
-      }
+      const squares = getAllByTestId('grid-square');
+
+      expect(squares[getSquareIndex(0, 0, dimensions.x)]).toHaveTextContent(
+        '0-0'
+      );
+      expect(squares[getSquareIndex(1, 2, dimensions.x)]).toHaveTextContent(
+        '1-2'
+      );
+      expect(squares[getSquareIndex(3, 4, dimensions.x)]).toHaveTextContent(
+        '3-4'
+      );
     });
 
     describe('handleClickingSquare', () => {
@@ -83,10 +100,15 @@ describe('Grid', () => {
 
       describe('clicking an empty square', () => {
         it("should deselect squares if 'CMD' is NOT pressed", () => {
-          const { getByText, getByTestId } = render(<Grid {...defaultProps} />);
+          const { getByText, getAllByTestId } = render(
+            <Grid {...defaultProps} />
+          );
+
+          const squares = getAllByTestId('grid-square');
 
           const firstSquareToClick = getByText('0-0');
-          const emptySquareToClick = getByTestId('1-0');
+          const emptySquareToClick =
+            squares[getSquareIndex(0, 1, dimensions.x)];
 
           fireEvent.click(firstSquareToClick);
           fireEvent.click(emptySquareToClick);
@@ -96,10 +118,15 @@ describe('Grid', () => {
         });
 
         it("should NOT deselect squares if 'CMD' is pressed", () => {
-          const { getByText, getByTestId } = render(<Grid {...defaultProps} />);
+          const { getByText, getAllByTestId } = render(
+            <Grid {...defaultProps} />
+          );
+
+          const squares = getAllByTestId('grid-square');
 
           const firstSquareToClick = getByText('0-0');
-          const emptySquareToClick = getByTestId('1-0');
+          const emptySquareToClick =
+            squares[getSquareIndex(0, 1, dimensions.x)];
 
           fireEvent.click(firstSquareToClick);
           fireEvent.click(emptySquareToClick, cmdClickOptions);
@@ -159,4 +186,8 @@ function assertSquareIsNotSelected(squareToClick: HTMLElement): void {
 
 function assertSquareIsSelected(squareToClick: HTMLElement): void {
   expect(squareToClick).toHaveStyleRule('outline', '3px solid black');
+}
+
+function getSquareIndex(x: number, y: number, dimensionX: number): number {
+  return y * dimensionX + x;
 }

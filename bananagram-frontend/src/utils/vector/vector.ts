@@ -16,3 +16,17 @@ export const keyToVector = (str: string): Vector => {
   }
   return createVector(noX, noY);
 };
+
+export const addVectors = (a: Vector, b: Vector): Vector =>
+  createVector(a.x + b.x, a.y + b.y);
+
+export const areVectorsEqual = (a: Vector, b: Vector): boolean =>
+  a.x === b.x && a.y === b.y;
+
+export const isVectorSmallerThan = (
+  vectorToCheck: Vector,
+  vectorToCompare: Vector
+): boolean =>
+  vectorToCheck.x <= vectorToCompare.x || vectorToCheck.y <= vectorToCompare.y;
+
+export const getVectorArea = ({ x, y }: Vector): number => x * y;

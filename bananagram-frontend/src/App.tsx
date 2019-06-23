@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { GridPage } from './components/Grid/GridPage';
+import { GridPage } from './components/Pages/GridPage';
 
 const AppWrapper = styled.div`
   box-sizing: border-box;
