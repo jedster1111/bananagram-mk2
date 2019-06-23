@@ -24,7 +24,7 @@ Can use `docker ps` to find the id of the container to remove.
 
 ### `docker exec -it bananagram_frontend sh`
 
-Attaches to a running docker container. To detach press `CTRL + p, CTRL + q`.
+Attaches to a running docker container. To detach type `exit`.
 
 ## Available Scripts
 
