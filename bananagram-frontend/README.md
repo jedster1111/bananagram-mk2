@@ -13,16 +13,14 @@ In order to create and run the containerised version of the frontend, from the `
 
 Creates the image.
 
-### `docker run --rm -d -p 80:80/tcp bananagram-frontend:latest`
+### `docker run --rm -d --name bananagram_frontend -p 80:80/tcp bananagram-frontend:latest`
 
 Creates and runs a container based on the image.
 
-### `docker rm ${idOfContainer}`
+### `docker stop bananagram_frontend`
 
-Stops the container with the specified id.<br>
+Stops and removes (as long as you ran it with the `--rm` flag) the container with the specified name.<br>
 Can use `docker ps` to find the id of the container to remove.
-
-
 
 ## Available Scripts
 
