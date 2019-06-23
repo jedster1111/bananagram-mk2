@@ -22,6 +22,10 @@ Creates and runs a container based on the image.
 Stops and removes (as long as you ran it with the `--rm` flag) the container with the specified name.<br>
 Can use `docker ps` to find the id of the container to remove.
 
+### `docker exec -it bananagram_frontend sh`
+
+Attaches to a running docker container. To detach press `CTRL + p, CTRL + q`.
+
 ## Available Scripts
 
 In the project directory, you can run:
