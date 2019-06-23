@@ -1,4 +1,30 @@
+# Bananagram-frontend
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Docker
+
+The production version of the frontend should be served using an NGINX server. The dockerfile can be found [in this Dockerfile](./Dockerfile).<br>
+It uses [multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/) in order to only keep the necessary static files in the resulting Docker image.<br>
+
+In order to create and run the containerised version of the frontend, from the `bananagram-frontend` directory run:
+
+### `docker build -t bananagram-frontend .`
+
+Creates the image.
+
+### `docker run --rm -d --name bananagram_frontend -p 80:80/tcp bananagram-frontend:latest`
+
+Creates and runs a container based on the image.
+
+### `docker stop bananagram_frontend`
+
+Stops and removes (as long as you ran it with the `--rm` flag) the container with the specified name.<br>
+Can use `docker ps` to find the id of the container to remove.
+
+### `docker exec -it bananagram_frontend sh`
+
+Attaches to a running docker container. To detach type `exit`.
 
 ## Available Scripts
 
