@@ -10,16 +10,16 @@ export default function shallowEquals<A extends { [key: string]: any }>(
     return false;
   }
 
-  var aKeys = Object.keys(objA);
-  var bKeys = Object.keys(objB);
-  var len = aKeys.length;
+  let aKeys = Object.keys(objA);
+  let bKeys = Object.keys(objB);
+  let len = aKeys.length;
 
   if (bKeys.length !== len) {
     return false;
   }
 
-  for (var i = 0; i < len; i++) {
-    var key = aKeys[i];
+  for (let i = 0; i < len; i++) {
+    let key = aKeys[i];
 
     if (objA[key] !== objB[key]) {
       return false;

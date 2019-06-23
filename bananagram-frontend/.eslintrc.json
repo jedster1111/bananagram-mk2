@@ -17,6 +17,7 @@
     "prettier/prettier": ["error", { "singleQuote": true }],
     "no-console": "warn",
     "no-useless-computed-key":"error",
+    "no-var": "error",
     "react/prop-types": 0,
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
