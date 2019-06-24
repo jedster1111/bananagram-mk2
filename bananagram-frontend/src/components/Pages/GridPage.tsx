@@ -9,16 +9,18 @@ import {
   isVectorSmallerThan
 } from '../../utils/vector/vector';
 import { GridControls } from '../Grid/GridControls/GridControls';
+import { GridState } from '../Grid/GridState/GridState';
 
 const StyledGridPage = styled.div`
   display: grid;
   grid-template-areas:
-    'header'
     'main'
     'footer';
-  grid-template-rows: 1fr 50vmin 1fr;
-  grid-template-columns: 50vmin;
+  grid-template-rows: 75vmin 100px;
+  grid-template-columns: 75vmin;
   row-gap: 8px;
+
+  align-items: center;
 `;
 
 const GridWrapper = styled.div`
@@ -27,8 +29,21 @@ const GridWrapper = styled.div`
   height: 100%;
 `;
 
-const GridControlsWrapper = styled.div`
+const GridFooterWrapper = styled.div`
+  box-sizing: border-box;
   grid-area: footer;
+
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: stretch;
+
+  border: solid 1px black;
+  padding: 8px 10px;
+
+  overflow: hidden;
 `;
 
 const pieces = {
@@ -36,7 +51,7 @@ const pieces = {
   [createVectorKey(0, 5)]: { id: '2', value: '0,5' },
   [createVectorKey(4, 7)]: { id: '3', value: '4,7' }
 };
-const offset = createVector(0, 0);
+const initialOffset = createVector(0, 0);
 const smallestSize = createVector(3, 3);
 const largestSize = createVector(35, 35);
 
@@ -44,6 +59,7 @@ export const GridPage: FC<{ initialGridDimensions?: Vector }> = ({
   initialGridDimensions = createVector(10, 10)
 }) => {
   const [dimensions, setDimensions] = useState<Vector>(initialGridDimensions);
+  const [offset, setOffset] = useState<Vector>(initialOffset);
 
   const handleZoomIn = (): void => {
     if (isVectorSmallerThan(dimensions, smallestSize)) {
@@ -69,9 +85,10 @@ export const GridPage: FC<{ initialGridDimensions?: Vector }> = ({
       <GridWrapper>
         <Grid dimensions={dimensions} pieces={pieces} offset={offset} />
       </GridWrapper>
-      <GridControlsWrapper>
+      <GridFooterWrapper>
+        <GridState dimensions={dimensions} offset={offset} />
         <GridControls onZoomIn={handleZoomIn} onZoomOut={handleZoomOut} />
-      </GridControlsWrapper>
+      </GridFooterWrapper>
     </StyledGridPage>
   );
 };

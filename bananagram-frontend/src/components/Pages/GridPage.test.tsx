@@ -61,5 +61,12 @@ describe('GridPage', () => {
       const squaresAfterClick = getAllByTestId('grid-square');
       expect(squaresAfterClick).toHaveLength(getVectorArea(initialDimensions));
     });
+
+    it('should render the current offset and dimension', () => {
+      const { getByText } = render(<GridPage />);
+
+      getByText('0-0');
+      getByText('10x10', { exact: false });
+    });
   });
 });
