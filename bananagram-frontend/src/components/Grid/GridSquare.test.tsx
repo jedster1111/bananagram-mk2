@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { MemoGridSquare } from './GridSquare';
 import { createVector } from '../../utils/vector/vector';
 
@@ -59,6 +59,61 @@ describe('GridSquare', () => {
       );
 
       expect(getByTestId('grid-square')).toHaveStyleRule('outline', 'none');
+    });
+  });
+
+  describe('handleSquareClick', () => {
+    const squareData = {
+      piece: { id: '1', value: 'someValue' },
+      isSelected: true
+    };
+    const metaKey = true;
+
+    it('should get called onClick', () => {
+      const { getByTestId } = render(
+        <MemoGridSquare {...defaultProps} squareData={squareData} />
+      );
+
+      const square = getByTestId('grid-square');
+
+      fireEvent.click(square, { metaKey });
+
+      expect(handleSquareClick).toHaveBeenCalledWith(
+        squareData.piece.id,
+        squareData.isSelected,
+        metaKey
+      );
+    });
+    it('should get called onClick', () => {
+      const { getByTestId } = render(
+        <MemoGridSquare {...defaultProps} squareData={squareData} />
+      );
+
+      const square = getByTestId('grid-square');
+
+      fireEvent.click(square, { metaKey });
+
+      expect(handleSquareClick).toHaveBeenCalledWith(
+        squareData.piece.id,
+        squareData.isSelected,
+        metaKey
+      );
+    });
+
+    it("should get called onKeyDown of the 'Enter' Key", () => {
+      const { getByTestId } = render(
+        <MemoGridSquare {...defaultProps} squareData={squareData} />
+      );
+
+      const square = getByTestId('grid-square');
+
+      fireEvent.keyDown(square, { key: 'Enter', metaKey });
+
+      expect(handleSquareClick).toHaveBeenCalledWith(
+        squareData.piece.id,
+        squareData.isSelected,
+        metaKey
+      );
     });
   });
 });

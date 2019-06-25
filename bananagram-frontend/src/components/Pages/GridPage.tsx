@@ -10,13 +10,14 @@ import {
 } from '../../utils/vector/vector';
 import { GridControls } from '../Grid/GridControls/GridControls';
 import { GridState } from '../Grid/GridState/GridState';
+import { Button } from '../common/Button';
 
 const StyledGridPage = styled.div`
   display: grid;
   grid-template-areas:
     'main'
     'footer';
-  grid-template-rows: 75vmin 100px;
+  grid-template-rows: 80vmin 100px;
   grid-template-columns: 75vmin;
   row-gap: 8px;
 
@@ -27,6 +28,8 @@ const GridWrapper = styled.div`
   grid-area: main;
   width: 100%;
   height: 100%;
+  display: grid;
+  grid-template-rows: 1fr 50px;
 `;
 
 const GridFooterWrapper = styled.div`
@@ -84,6 +87,12 @@ export const GridPage: FC<{ initialGridDimensions?: Vector }> = ({
     <StyledGridPage>
       <GridWrapper>
         <Grid dimensions={dimensions} pieces={pieces} offset={offset} />
+        <div>
+          <Button>&#8593;</Button>
+          <Button>&#8594;</Button>
+          <Button>&#8595;</Button>
+          <Button>&#8592;</Button>
+        </div>
       </GridWrapper>
       <GridFooterWrapper>
         <GridState dimensions={dimensions} offset={offset} />

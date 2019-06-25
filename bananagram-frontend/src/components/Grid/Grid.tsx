@@ -20,11 +20,12 @@ interface GridProps {
 }
 
 export const GridWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
   height: 100%;
   box-sizing: border-box;
   border: solid 1px black;
-  display: grid;
-  grid-auto-rows: 1fr;
 `;
 
 export const Grid: FC<GridProps> = memo(
