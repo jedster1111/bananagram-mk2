@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import { Grid } from '../Grid/Grid';
 import {
   createVector,
-  createVectorKey,
   Vector,
   addVectors,
   isVectorSmallerThan
 } from '../../utils/vector/vector';
 import { GridControls } from '../Grid/GridControls/GridControls';
 import { GridState } from '../Grid/GridState/GridState';
-import { Button } from '../common/Button';
+import { OffsetControlButton } from '../Grid/GridControls/OffsetControlButton';
+import { Directions, Pieces } from '../../types';
 
 const StyledGridPage = styled.div`
   display: grid;
@@ -26,10 +26,21 @@ const StyledGridPage = styled.div`
 
 const GridWrapper = styled.div`
   grid-area: main;
-  width: 100%;
+
+  padding: 8px;
   height: 100%;
+  border: solid 1px black;
+
   display: grid;
-  grid-template-rows: 1fr 50px;
+  grid-template-columns: 50px 1fr 50px;
+  grid-template-rows: 50px 1fr 50px;
+  grid-template-areas:
+    '. up-arrow .'
+    'left-arrow main right-arrow'
+    '. down-arrow .';
+
+  justify-items: center;
+  align-items: center;
 `;
 
 const GridFooterWrapper = styled.div`
@@ -49,18 +60,17 @@ const GridFooterWrapper = styled.div`
   overflow: hidden;
 `;
 
-const pieces = {
-  [createVectorKey(1, 1)]: { id: '1', value: <div>1,1</div> },
-  [createVectorKey(0, 5)]: { id: '2', value: '0,5' },
-  [createVectorKey(4, 7)]: { id: '3', value: '4,7' }
-};
+const directions: Directions[] = ['up', 'left', 'right', 'down'];
+
 const initialOffset = createVector(0, 0);
 const smallestSize = createVector(3, 3);
 const largestSize = createVector(35, 35);
+const invertOffset = true;
 
-export const GridPage: FC<{ initialGridDimensions?: Vector }> = ({
-  initialGridDimensions = createVector(10, 10)
-}) => {
+export const GridPage: FC<{
+  initialGridDimensions?: Vector;
+  pieces?: Pieces;
+}> = ({ initialGridDimensions = createVector(10, 10), pieces = {} }) => {
   const [dimensions, setDimensions] = useState<Vector>(initialGridDimensions);
   const [offset, setOffset] = useState<Vector>(initialOffset);
 
@@ -83,16 +93,28 @@ export const GridPage: FC<{ initialGridDimensions?: Vector }> = ({
     );
   };
 
+  const handleOffsetChange = (offsetChange: Vector): void => {
+    setOffset(prevOffset => addVectors(prevOffset, offsetChange));
+  };
+
+  const directionButtons = directions.map(direction => (
+    <OffsetControlButton
+      key={direction}
+      direction={direction}
+      onClickChangeOffsetButton={handleOffsetChange}
+    />
+  ));
+
   return (
     <StyledGridPage>
       <GridWrapper>
-        <Grid dimensions={dimensions} pieces={pieces} offset={offset} />
-        <div>
-          <Button>&#8593;</Button>
-          <Button>&#8594;</Button>
-          <Button>&#8595;</Button>
-          <Button>&#8592;</Button>
-        </div>
+        {directionButtons}
+        <Grid
+          dimensions={dimensions}
+          pieces={pieces}
+          offset={offset}
+          invertOffset={invertOffset}
+        />
       </GridWrapper>
       <GridFooterWrapper>
         <GridState dimensions={dimensions} offset={offset} />
