@@ -9,10 +9,14 @@ interface GridControlsProps {
 
 const GridControlsWrapper = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 `;
 
-const ZoomButtonsWrapper = styled.div``;
+const ZoomButtonsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;
 
 export const GridControls: FC<GridControlsProps> = ({
   onZoomIn,
