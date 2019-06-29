@@ -11,3 +11,5 @@ export interface Piece {
   id: string;
   value: ReactNode;
 }
+
+export type Directions = 'up' | 'right' | 'down' | 'left';

@@ -27,7 +27,7 @@ const NoWrapText = styled.span`
 export const GridState: FC<GridStateProps> = ({ dimensions, offset }) => (
   <GridStateWrapper>
     <GridStateItem>
-      Camera: <NoWrapText>{`${offset.x}-${offset.y}`}</NoWrapText>
+      Camera: <NoWrapText>{`${offset.x}, ${offset.y}`}</NoWrapText>
     </GridStateItem>
     <GridStateItem>{`Dimensions: ${dimensions.x}x${dimensions.y}`}</GridStateItem>
   </GridStateWrapper>

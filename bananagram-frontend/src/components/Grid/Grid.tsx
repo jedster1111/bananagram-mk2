@@ -17,22 +17,25 @@ interface GridProps {
   dimensions: Vector;
   pieces?: Pieces;
   offset?: Vector;
+  invertOffset?: boolean;
 }
 
 export const GridWrapper = styled.div`
+  grid-area: main;
+  justify-self: stretch;
+  align-self: stretch;
+
+  display: flex;
+  flex-direction: column;
+
   height: 100%;
   box-sizing: border-box;
   border: solid 1px black;
-  display: grid;
-  grid-auto-rows: 1fr;
 `;
 
 export const Grid: FC<GridProps> = memo(
-  ({ pieces = {}, offset = createVector(0, 0), dimensions }) => {
-    const [selectedPieces, setSelectedPieces] = useState<SelectedPieces>({
-      1: true,
-      3: true
-    });
+  ({ pieces = {}, offset = createVector(0, 0), dimensions, invertOffset }) => {
+    const [selectedPieces, setSelectedPieces] = useState<SelectedPieces>({});
 
     const handleSquareClick = useCallback(
       (id: string | undefined, isSelected: boolean, isCmdPressed: boolean) => {
@@ -45,7 +48,13 @@ export const Grid: FC<GridProps> = memo(
       []
     );
 
-    const squares = createSquares(pieces, selectedPieces, dimensions);
+    const squares = createSquares(
+      pieces,
+      selectedPieces,
+      dimensions,
+      offset,
+      invertOffset
+    );
 
     return (
       <GridWrapper>

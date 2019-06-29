@@ -1,7 +1,13 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { GridPage } from './GridPage';
-import { getVectorArea, createVector } from '../../utils/vector/vector';
+import {
+  getVectorArea,
+  createVector,
+  createVectorKey
+} from '../../utils/vector/vector';
+import { arrowDirectionMap } from '../Grid/GridControls/OffsetControlButton';
+import { getSquareIndex } from '../../utils/test/getSquareIndex';
 
 describe('GridPage', () => {
   describe('handleZoom', () => {
@@ -65,8 +71,24 @@ describe('GridPage', () => {
     it('should render the current offset and dimension', () => {
       const { getByText } = render(<GridPage />);
 
-      getByText('0-0');
+      getByText('0, 0');
       getByText('10x10', { exact: false });
+    });
+  });
+
+  describe('offset', () => {
+    it('clicking on the right arrow button should move the grid one square to the right', () => {
+      const { getAllByTestId, getByText } = render(
+        <GridPage
+          pieces={{ [createVectorKey(0, 0)]: { id: '1', value: 'someValue' } }}
+          initialGridDimensions={createVector(5, 5)}
+        />
+      );
+
+      fireEvent.click(getByText(arrowDirectionMap.right));
+      const squares = getAllByTestId('grid-square');
+
+      expect(squares[getSquareIndex(1, 0, 5)]).toHaveTextContent('someValue');
     });
   });
 });
