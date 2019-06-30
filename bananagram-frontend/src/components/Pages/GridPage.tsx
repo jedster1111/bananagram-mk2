@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import styled from 'styled-components';
 import { Grid } from '../Grid/Grid';
 import { GridControls } from '../Grid/GridControls/GridControls';
-import { GridState } from '../Grid/GridState/GridState';
+import { GridState } from '../Grid/GridInfo/GridInfo';
 import { OffsetControlButton } from '../Grid/GridControls/OffsetControlButton';
 import { Directions, Pieces } from '../../types';
 import { createVector, Vector, addVectors } from 'simple-vectors';

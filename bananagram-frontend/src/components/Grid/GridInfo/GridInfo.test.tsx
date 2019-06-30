@@ -1,5 +1,5 @@
 import React from 'react';
-import { GridState } from './GridState';
+import { GridState } from './GridInfo';
 import { render } from '@testing-library/react';
 import { createVector } from 'simple-vectors';
 
