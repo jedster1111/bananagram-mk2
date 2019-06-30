@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 /**
- * Keyed with ${x}-${y}
+ * Keyed with ${x},${y}
  */
 export interface Pieces {
   [vectorString: string]: Piece | undefined;

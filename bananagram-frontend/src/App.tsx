@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { GridPage } from './components/Pages/GridPage';
-import { createVectorKey } from './utils/vector/vector';
+import { createVectorKey } from 'simple-vectors';
 
 const AppWrapper = styled.div`
   box-sizing: border-box;

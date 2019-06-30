@@ -1,10 +1,6 @@
 import React, { MouseEvent } from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import {
-  createVector,
-  createVectorKey,
-  getVectorArea
-} from '../../utils/vector/vector';
+import { createVector, createVectorKey } from 'simple-vectors';
 import { Grid } from './Grid';
 import { Pieces } from '../../types';
 import { getSquareIndex } from '../../utils/test/getSquareIndex';
@@ -36,7 +32,7 @@ describe('Grid', () => {
         expect(square).toHaveTextContent(/^$/);
       });
 
-      expect(squares).toHaveLength(getVectorArea(dimensions));
+      expect(squares).toHaveLength(dimensions.getArea());
     });
 
     it('should render a grid with values passed in', () => {

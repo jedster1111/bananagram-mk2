@@ -1,4 +1,4 @@
-import { createVector, createVectorKey } from '../../utils/vector/vector';
+import { createVector, createVectorKey } from 'simple-vectors';
 import { Pieces } from '../../types';
 import { createSquares } from './createSquares';
 
@@ -25,13 +25,13 @@ describe('createSquares', () => {
     expect(squares.length).toBe(dimension);
     expect(squares[0].length).toBe(dimension);
 
-    expect(squares[0][0]).toEqual({ piece: pieces['0-0'], isSelected: true });
+    expect(squares[0][0]).toEqual({ piece: pieces['0,0'], isSelected: true });
     expect(squares[2][1]).toEqual({
-      piece: pieces['1-2'],
+      piece: pieces['1,2'],
       isSelected: false
     });
     expect(squares[4][3]).toEqual({
-      piece: pieces['3-4'],
+      piece: pieces['3,4'],
       isSelected: false
     });
   });

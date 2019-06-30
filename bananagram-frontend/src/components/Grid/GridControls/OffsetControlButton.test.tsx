@@ -2,7 +2,11 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { OffsetControlButton } from './OffsetControlButton';
 import { Directions } from '../../../types';
-import { createVector, Vector } from '../../../utils/vector/vector';
+import { Vector, createVector } from 'simple-vectors';
+
+jest.mock('simple-vectors', () => ({
+  createVector: jest.fn(() => ({ x: 1, y: 2 }))
+}));
 
 describe('OffsetControlButton', () => {
   describe.each<[Directions, string, Vector]>([
@@ -31,7 +35,7 @@ describe('OffsetControlButton', () => {
       );
       const button = getByText(arrow);
       fireEvent.click(button);
-      expect(mockOnClick).toHaveBeenCalledWith(vector);
+      expect(mockOnClick).lastCalledWith({ x: 1, y: 2 });
     });
   });
 });

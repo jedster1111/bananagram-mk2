@@ -1,16 +1,11 @@
 import React, { FC, useState } from 'react';
 import styled from 'styled-components';
 import { Grid } from '../Grid/Grid';
-import {
-  createVector,
-  Vector,
-  addVectors,
-  isVectorSmallerThan
-} from '../../utils/vector/vector';
 import { GridControls } from '../Grid/GridControls/GridControls';
-import { GridState } from '../Grid/GridState/GridState';
+import { GridState } from '../Grid/GridInfo/GridInfo';
 import { OffsetControlButton } from '../Grid/GridControls/OffsetControlButton';
 import { Directions, Pieces } from '../../types';
+import { createVector, Vector, addVectors } from 'simple-vectors';
 
 const StyledGridPage = styled.div`
   display: grid;
@@ -75,7 +70,7 @@ export const GridPage: FC<{
   const [offset, setOffset] = useState<Vector>(initialOffset);
 
   const handleZoomIn = (): void => {
-    if (isVectorSmallerThan(dimensions, smallestSize)) {
+    if (dimensions.x <= smallestSize.x || dimensions.y <= smallestSize.y) {
       return;
     }
     setDimensions(prevDimensions =>
@@ -84,7 +79,7 @@ export const GridPage: FC<{
   };
 
   const handleZoomOut = (): void => {
-    if (isVectorSmallerThan(largestSize, dimensions)) {
+    if (largestSize.x <= dimensions.x || largestSize.y <= dimensions.y) {
       return;
     }
 

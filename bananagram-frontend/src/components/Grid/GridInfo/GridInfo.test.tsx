@@ -1,7 +1,7 @@
 import React from 'react';
-import { GridState } from './GridState';
-import { createVector } from '../../../utils/vector/vector';
+import { GridState } from './GridInfo';
 import { render } from '@testing-library/react';
+import { createVector } from 'simple-vectors';
 
 describe('GridState', () => {
   const defaultProps = {

@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import { SelectedPieces } from './gridTypes';
 import { MemoGridRow } from './GridRow';
 import { createSquares } from './createSquares';
-import { Vector, createVector } from '../../utils/vector/vector';
+import { Vector, createVector } from 'simple-vectors';
 import { Pieces } from '../../types';
 
 interface GridProps {

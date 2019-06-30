@@ -1,13 +1,9 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { GridPage } from './GridPage';
-import {
-  getVectorArea,
-  createVector,
-  createVectorKey
-} from '../../utils/vector/vector';
 import { arrowDirectionMap } from '../Grid/GridControls/OffsetControlButton';
 import { getSquareIndex } from '../../utils/test/getSquareIndex';
+import { createVector, createVectorKey } from 'simple-vectors';
 
 describe('GridPage', () => {
   describe('handleZoom', () => {
@@ -15,28 +11,26 @@ describe('GridPage', () => {
       const { getAllByTestId, getByText } = render(<GridPage />);
 
       const squares = getAllByTestId('grid-square');
-      expect(squares).toHaveLength(getVectorArea(createVector(10, 10)));
+      expect(squares).toHaveLength(createVector(10, 10).getArea());
 
       const zoomInButton = getByText(/^\+$/);
       fireEvent.click(zoomInButton);
 
       const squaresAfterClick = getAllByTestId('grid-square');
-      expect(squaresAfterClick).toHaveLength(getVectorArea(createVector(9, 9)));
+      expect(squaresAfterClick).toHaveLength(createVector(9, 9).getArea());
     });
 
     it('should zoom OUT when I press the - button', () => {
       const { getAllByTestId, getByText } = render(<GridPage />);
 
       const squares = getAllByTestId('grid-square');
-      expect(squares).toHaveLength(getVectorArea(createVector(10, 10)));
+      expect(squares).toHaveLength(createVector(10, 10).getArea());
 
       const zoomInButton = getByText(/^-$/);
       fireEvent.click(zoomInButton);
 
       const squaresAfterClick = getAllByTestId('grid-square');
-      expect(squaresAfterClick).toHaveLength(
-        getVectorArea(createVector(11, 11))
-      );
+      expect(squaresAfterClick).toHaveLength(createVector(11, 11).getArea());
     });
 
     it('should stop you from zooming further in than a 3x3 square', () => {
@@ -46,13 +40,13 @@ describe('GridPage', () => {
       );
 
       const squares = getAllByTestId('grid-square');
-      expect(squares).toHaveLength(getVectorArea(initialDimensions));
+      expect(squares).toHaveLength(initialDimensions.getArea());
 
       const zoomInButton = getByText(/^\+$/);
       fireEvent.click(zoomInButton);
 
       const squaresAfterClick = getAllByTestId('grid-square');
-      expect(squaresAfterClick).toHaveLength(getVectorArea(initialDimensions));
+      expect(squaresAfterClick).toHaveLength(initialDimensions.getArea());
     });
 
     it('should stop you from zooming out further than a 35x35 square', () => {
@@ -65,7 +59,7 @@ describe('GridPage', () => {
       fireEvent.click(zoomOutButton);
 
       const squaresAfterClick = getAllByTestId('grid-square');
-      expect(squaresAfterClick).toHaveLength(getVectorArea(initialDimensions));
+      expect(squaresAfterClick).toHaveLength(initialDimensions.getArea());
     });
 
     it('should render the current offset and dimension', () => {
