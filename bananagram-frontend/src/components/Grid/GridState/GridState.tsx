@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { Vector } from '../../../utils/vector/vector';
 import styled from 'styled-components';
+import { Vector } from 'simple-vectors';
 
 interface GridStateProps {
   offset: Vector;

@@ -1,4 +1,4 @@
-import { Vector, createVectorKey } from '../../utils/vector/vector';
+import { createVectorKey, Vector } from 'simple-vectors';
 import { GridSquares, GridRow, SelectedPieces, SquareData } from './gridTypes';
 import { Pieces, Piece } from '../../types';
 import memoizee from 'memoizee';

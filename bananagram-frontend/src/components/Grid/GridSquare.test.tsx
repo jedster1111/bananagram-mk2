@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import { MemoGridSquare } from './GridSquare';
-import { createVector } from '../../utils/vector/vector';
+import { createVector } from 'simple-vectors';
 
 describe('GridSquare', () => {
   const position = createVector(0, 0);
