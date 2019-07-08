@@ -78,6 +78,19 @@ export const GridPage: FC<{
     );
   };
 
+  const setVectors = (pv: Vector, iv: Vector): Vector => {
+    pv = iv;
+    return pv;
+  };
+
+  const handleHome = (): void => {
+    setDimensions(
+      prevDimensions =>
+        (prevDimensions = setVectors(prevDimensions, initialGridDimensions))
+    );
+    setOffset(prevOffset => setVectors(prevOffset, initialOffset));
+  };
+
   const handleZoomOut = (): void => {
     if (largestSize.x <= dimensions.x || largestSize.y <= dimensions.y) {
       return;
@@ -113,7 +126,11 @@ export const GridPage: FC<{
       </GridWrapper>
       <GridFooterWrapper>
         <GridInfo dimensions={dimensions} offset={offset} />
-        <GridControls onZoomIn={handleZoomIn} onZoomOut={handleZoomOut} />
+        <GridControls
+          onZoomIn={handleZoomIn}
+          onHome={handleHome}
+          onZoomOut={handleZoomOut}
+        />
       </GridFooterWrapper>
     </StyledGridPage>
   );

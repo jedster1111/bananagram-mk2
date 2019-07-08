@@ -10,7 +10,7 @@ interface GridSquareProps {
     isCmdPressed: boolean
   ) => void;
 }
-
+// eslint-disable-next-line
 const StyledGridSquare = styled.div<{
   isSelected: boolean;
   isPiece: boolean;
