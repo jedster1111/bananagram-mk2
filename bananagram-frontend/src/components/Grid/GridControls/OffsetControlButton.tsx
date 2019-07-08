@@ -22,16 +22,20 @@ const OffsetControlContainer = styled.div<{ direction: Directions }>`
   grid-area: ${({ direction }) => `${direction}-arrow`};
 `;
 
-export const OffsetControlButton: FC<{
+interface OffsetControlButtonProps {
   direction: Directions;
   onClickChangeOffsetButton: (offsetChange: Vector) => void;
-}> = ({ direction, onClickChangeOffsetButton }) => {
-  const arrow = arrowDirectionMap[direction];
+}
+
+export const OffsetControlButton: FC<OffsetControlButtonProps> = props => {
+  const arrow = arrowDirectionMap[props.direction];
 
   return (
-    <OffsetControlContainer direction={direction}>
+    <OffsetControlContainer direction={props.direction}>
       <Button
-        onClick={() => onClickChangeOffsetButton(vectorDirectionMap[direction])}
+        onClick={() =>
+          props.onClickChangeOffsetButton(vectorDirectionMap[props.direction])
+        }
       >
         {arrow}
       </Button>

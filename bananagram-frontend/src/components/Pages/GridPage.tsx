@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import styled from 'styled-components';
 import { Grid } from '../Grid/Grid';
 import { GridControls } from '../Grid/GridControls/GridControls';
-import { GridState } from '../Grid/GridInfo/GridInfo';
+import { GridInfo } from '../Grid/GridInfo/GridInfo';
 import { OffsetControlButton } from '../Grid/GridControls/OffsetControlButton';
 import { Directions, Pieces } from '../../types';
 import { createVector, Vector, addVectors } from 'simple-vectors';
@@ -112,7 +112,7 @@ export const GridPage: FC<{
         />
       </GridWrapper>
       <GridFooterWrapper>
-        <GridState dimensions={dimensions} offset={offset} />
+        <GridInfo dimensions={dimensions} offset={offset} />
         <GridControls onZoomIn={handleZoomIn} onZoomOut={handleZoomOut} />
       </GridFooterWrapper>
     </StyledGridPage>

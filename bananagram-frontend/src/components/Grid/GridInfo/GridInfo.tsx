@@ -2,17 +2,17 @@ import React, { FC } from 'react';
 import styled from 'styled-components';
 import { Vector } from 'simple-vectors';
 
-interface GridStateProps {
+interface GridInfoProps {
   offset: Vector;
   dimensions: Vector;
 }
 
-const GridStateWrapper = styled.div`
+const GridInfoWrapper = styled.div`
   display: inline-flex;
   justify-content: space-evenly;
 `;
 
-const GridStateItem = styled.span`
+const GridInfoItem = styled.span`
   flex: 1;
 
   margin: 0 5px;
@@ -24,11 +24,11 @@ const NoWrapText = styled.span`
   overflow: hidden;
 `;
 
-export const GridState: FC<GridStateProps> = ({ dimensions, offset }) => (
-  <GridStateWrapper>
-    <GridStateItem>
+export const GridInfo: FC<GridInfoProps> = ({ dimensions, offset }) => (
+  <GridInfoWrapper>
+    <GridInfoItem>
       Camera: <NoWrapText>{`${offset.x}, ${offset.y}`}</NoWrapText>
-    </GridStateItem>
-    <GridStateItem>{`Dimensions: ${dimensions.x}x${dimensions.y}`}</GridStateItem>
-  </GridStateWrapper>
+    </GridInfoItem>
+    <GridInfoItem>{`Dimensions: ${dimensions.x}x${dimensions.y}`}</GridInfoItem>
+  </GridInfoWrapper>
 );
