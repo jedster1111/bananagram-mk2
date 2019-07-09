@@ -78,17 +78,9 @@ export const GridPage: FC<{
     );
   };
 
-  const setVectors = (pv: Vector, iv: Vector): Vector => {
-    pv = iv;
-    return pv;
-  };
-
   const handleHome = (): void => {
-    setDimensions(
-      prevDimensions =>
-        (prevDimensions = setVectors(prevDimensions, initialGridDimensions))
-    );
-    setOffset(prevOffset => setVectors(prevOffset, initialOffset));
+    setDimensions(initialGridDimensions);
+    setOffset(initialOffset);
   };
 
   const handleZoomOut = (): void => {
