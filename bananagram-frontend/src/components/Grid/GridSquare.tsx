@@ -1,6 +1,7 @@
-import React, { FC, memo, MouseEvent, KeyboardEvent } from 'react';
-import { SquareData } from './gridTypes';
+import React, { FC, KeyboardEvent, memo, MouseEvent } from 'react';
 import styled from 'styled-components';
+
+import { SquareData } from './gridTypes';
 
 interface GridSquareProps {
   squareData: SquareData;

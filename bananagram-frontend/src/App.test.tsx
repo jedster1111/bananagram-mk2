@@ -1,6 +1,7 @@
 import React from 'react';
-import App from './App';
 import { render } from '@testing-library/react';
+
+import App from './App';
 
 describe('App', () => {
   it('should render a header, body and footer', () => {

@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
-import { Button } from '../../common/Button';
+import { createVector, Vector } from 'simple-vectors';
 import styled from 'styled-components';
+
+import { Button } from '../../common/Button';
 import { Directions } from '../../../types';
-import { Vector, createVector } from 'simple-vectors';
 
 export const arrowDirectionMap: { [key in Directions]: string } = {
   up: '\u2191',

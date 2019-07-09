@@ -1,8 +1,10 @@
 import React, { FC, memo } from 'react';
-import { SquareData } from './gridTypes';
 import styled from 'styled-components';
-import { MemoGridSquare } from './GridSquare';
+
 import shallowEquals from '../../utils/shallowEquals';
+
+import { SquareData } from './gridTypes';
+import { MemoGridSquare } from './GridSquare';
 
 interface GridRowProps {
   rowData: SquareData[];

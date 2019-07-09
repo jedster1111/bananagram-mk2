@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 // adapted from https://usehooks.com/useWhyDidYouUpdate/
 
-import { useRef, useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 export function useWhyDidYouUpdate(
   name: string,

@@ -1,17 +1,19 @@
 import React, {
-  FC,
-  useState,
-  useCallback,
   Dispatch,
+  FC,
+  memo,
   SetStateAction,
-  memo
+  useCallback,
+  useState
 } from 'react';
 import styled from 'styled-components';
+import { createVector, Vector } from 'simple-vectors';
+
+import { Pieces } from '../../types';
+
 import { SelectedPieces } from './gridTypes';
 import { MemoGridRow } from './GridRow';
 import { createSquares } from './createSquares';
-import { Vector, createVector } from 'simple-vectors';
-import { Pieces } from '../../types';
 
 interface GridProps {
   dimensions: Vector;
