@@ -10,3 +10,5 @@ EXPOSE 8080 50000
 # install jenkins plugins
 COPY ./jenkins-plugins /usr/share/jenkins/plugins
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/plugins
+
+COPY ./jenkins.yaml /usr/share/jenkins
