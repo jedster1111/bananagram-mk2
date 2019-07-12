@@ -12,8 +12,7 @@ const StyledGridPage = styled.div`
   grid-template-areas:
     'main'
     'footer';
-  grid-template-rows: 80vmin 100px;
-  grid-template-columns: 75vmin;
+  grid-template-rows: 8fr 1fr;
   row-gap: 8px;
 
   align-items: center;
@@ -22,6 +21,7 @@ const StyledGridPage = styled.div`
 const GridWrapper = styled.div`
   grid-area: main;
 
+  box-sizing: border-box;
   padding: 8px;
   height: 100%;
   border: solid 1px black;
