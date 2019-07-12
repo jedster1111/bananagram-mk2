@@ -6,10 +6,6 @@ import { Directions } from '../../../types';
 
 import { OffsetControlButton } from './OffsetControlButton';
 
-jest.mock('simple-vectors', () => ({
-  createVector: jest.fn(() => ({ x: 1, y: 2 }))
-}));
-
 describe('OffsetControlButton', () => {
   describe.each<[Directions, string, Vector]>([
     ['up', '\u2191', createVector(0, -1)],
@@ -37,7 +33,9 @@ describe('OffsetControlButton', () => {
       );
       const button = getByText(arrow);
       fireEvent.click(button);
-      expect(mockOnClick).lastCalledWith({ x: 1, y: 2 });
+
+      const { x, y } = mockOnClick.mock.calls[0][0];
+      expect({ x, y }).toEqual({ x: vector.x, y: vector.y });
     });
   });
 });
