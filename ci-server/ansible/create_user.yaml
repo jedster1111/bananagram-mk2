@@ -37,7 +37,7 @@
         name: "{{ user_name }}"
         password: "{{ user_password }}"
         shell: "/bin/bash"
-        groups: "wheel"
+        groups: "wheel" 
 
     - name: Add local public key for key-based SSH authentication
       authorized_key:

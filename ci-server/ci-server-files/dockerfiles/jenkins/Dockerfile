@@ -12,3 +12,6 @@ COPY ./jenkins-plugins /usr/share/jenkins/plugins
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/plugins
 
 COPY ./jenkins.yaml /usr/share/jenkins
+
+# Add jenkins user to docker group
+RUN usermod -a -G docker jenkins

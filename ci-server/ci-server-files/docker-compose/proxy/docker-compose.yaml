@@ -37,6 +37,8 @@ services:
       - "LETSENCRYPT_HOST=jenkins.bananagram.jedthompson.co.uk"
     volumes:
       - "jenkins-home:/var/jenkins_home"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "/usr/bin/docker:/usr/bin/docker"
     depends_on:
       - "nginx-proxy-letsencrypt"
 
