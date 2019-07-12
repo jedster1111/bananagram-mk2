@@ -1,11 +1,12 @@
 import React, { FC, useState } from 'react';
 import styled from 'styled-components';
+import { addVectors, createVector, Vector } from 'simple-vectors';
+
 import { Grid } from '../Grid/Grid';
 import { GridControls } from '../Grid/GridControls/GridControls';
 import { GridState } from '../Grid/GridInfo/GridInfo';
 import { OffsetControlButton } from '../Grid/GridControls/OffsetControlButton';
 import { Directions, Pieces } from '../../types';
-import { createVector, Vector, addVectors } from 'simple-vectors';
 
 const StyledGridPage = styled.div`
   display: grid;

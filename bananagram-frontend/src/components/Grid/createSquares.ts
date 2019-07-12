@@ -1,7 +1,9 @@
 import { createVectorKey, Vector } from 'simple-vectors';
-import { GridSquares, GridRow, SelectedPieces, SquareData } from './gridTypes';
-import { Pieces, Piece } from '../../types';
 import memoizee from 'memoizee';
+
+import { Piece, Pieces } from '../../types';
+
+import { GridRow, GridSquares, SelectedPieces, SquareData } from './gridTypes';
 
 const memoCreateSquareData = memoizee(createSquareData);
 

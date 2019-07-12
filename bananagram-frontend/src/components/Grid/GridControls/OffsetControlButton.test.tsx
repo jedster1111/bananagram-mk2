@@ -1,8 +1,10 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import { OffsetControlButton } from './OffsetControlButton';
+import { fireEvent, render } from '@testing-library/react';
+import { createVector, Vector } from 'simple-vectors';
+
 import { Directions } from '../../../types';
-import { Vector, createVector } from 'simple-vectors';
+
+import { OffsetControlButton } from './OffsetControlButton';
 
 jest.mock('simple-vectors', () => ({
   createVector: jest.fn(() => ({ x: 1, y: 2 }))

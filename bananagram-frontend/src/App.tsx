@@ -1,7 +1,8 @@
 import React from 'react';
-import { GridPage } from './components/Pages/GridPage';
 import { createVectorKey } from 'simple-vectors';
 import styled from 'styled-components';
+
+import { GridPage } from './components/Pages/GridPage';
 
 const AppWrapper = styled.div`
   display: grid;

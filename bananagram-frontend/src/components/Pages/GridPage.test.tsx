@@ -1,9 +1,11 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import { GridPage } from './GridPage';
+import { fireEvent, render } from '@testing-library/react';
+import { createVector, createVectorKey } from 'simple-vectors';
+
 import { arrowDirectionMap } from '../Grid/GridControls/OffsetControlButton';
 import { getSquareIndex } from '../../utils/test/getSquareIndex';
-import { createVector, createVectorKey } from 'simple-vectors';
+
+import { GridPage } from './GridPage';
 
 describe('GridPage', () => {
   describe('handleZoom', () => {

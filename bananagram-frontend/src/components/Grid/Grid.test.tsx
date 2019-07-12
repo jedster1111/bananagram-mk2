@@ -1,9 +1,11 @@
 import React, { MouseEvent } from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import { createVector, createVectorKey } from 'simple-vectors';
-import { Grid } from './Grid';
+
 import { Pieces } from '../../types';
 import { getSquareIndex } from '../../utils/test/getSquareIndex';
+
+import { Grid } from './Grid';
 
 const cmdClickOptions: Partial<MouseEvent> = { metaKey: true };
 
