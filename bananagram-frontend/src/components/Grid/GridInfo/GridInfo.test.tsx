@@ -1,7 +1,8 @@
 import React from 'react';
-import { GridInfo } from './GridInfo';
 import { render } from '@testing-library/react';
 import { createVector } from 'simple-vectors';
+
+import { GridInfo } from './GridInfo';
 
 describe('GridInfo', () => {
   const defaultProps = {

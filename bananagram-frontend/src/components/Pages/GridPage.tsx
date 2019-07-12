@@ -1,19 +1,19 @@
 import React, { FC, useState } from 'react';
 import styled from 'styled-components';
+import { addVectors, createVector, Vector } from 'simple-vectors';
+
 import { Grid } from '../Grid/Grid';
 import { GridControls } from '../Grid/GridControls/GridControls';
 import { GridInfo } from '../Grid/GridInfo/GridInfo';
 import { OffsetControlButton } from '../Grid/GridControls/OffsetControlButton';
 import { Directions, Pieces } from '../../types';
-import { createVector, Vector, addVectors } from 'simple-vectors';
 
 const StyledGridPage = styled.div`
   display: grid;
   grid-template-areas:
     'main'
     'footer';
-  grid-template-rows: 80vmin 100px;
-  grid-template-columns: 75vmin;
+  grid-template-rows: 8fr 1fr;
   row-gap: 8px;
 
   align-items: center;
@@ -22,6 +22,7 @@ const StyledGridPage = styled.div`
 const GridWrapper = styled.div`
   grid-area: main;
 
+  box-sizing: border-box;
   padding: 8px;
   height: 100%;
   border: solid 1px black;

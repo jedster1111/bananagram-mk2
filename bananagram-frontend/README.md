@@ -2,6 +2,20 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Local Development
+
+### VSCode
+
+#### Recommended Extensions
+
+##### [vscode-eslint](https://github.com/Microsoft/vscode-eslint)
+
+Enables you to see eslint/prettier problems directly inside of VSCode.
+
+##### [vscode-styled-components](https://github.com/styled-components/vscode-styled-components)
+
+Enables you to see syntax highlighting and autocomplete for styled-components.
+
 ## Docker
 
 The production version of the frontend should be served using an NGINX server. The dockerfile can be found [in this Dockerfile](./Dockerfile).<br>

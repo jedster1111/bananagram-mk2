@@ -1,5 +1,7 @@
 import { createVector, createVectorKey } from 'simple-vectors';
+
 import { Pieces } from '../../types';
+
 import { createSquares } from './createSquares';
 
 describe('createSquares', () => {
