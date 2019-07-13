@@ -8,7 +8,7 @@ import { getSquareIndex } from '../../utils/test/getSquareIndex';
 import { GridPage } from './GridPage';
 
 describe('GridPage', () => {
-  describe('handleZoom', () => {
+  describe('GridControls', () => {
     it('should zoom IN when I press the + button', () => {
       const { getAllByTestId, getByText } = render(<GridPage />);
 
@@ -66,6 +66,27 @@ describe('GridPage', () => {
 
     it('should render the current offset and dimension', () => {
       const { getByText } = render(<GridPage />);
+
+      getByText('0, 0');
+      getByText('10x10', { exact: false });
+    });
+
+    it('home button should reset camera 0,0 dimension 10,10', () => {
+      const { getByText } = render(<GridPage />);
+
+      const zoomOutButton = getByText(/^-$/);
+      fireEvent.click(zoomOutButton);
+
+      getByText('0, 0');
+      getByText('11x11', { exact: false });
+
+      fireEvent.click(getByText(arrowDirectionMap.right));
+
+      getByText('1, 0');
+      getByText('11x11', { exact: false });
+
+      const homeButton = getByText(/^Home$/);
+      fireEvent.click(homeButton);
 
       getByText('0, 0');
       getByText('10x10', { exact: false });
