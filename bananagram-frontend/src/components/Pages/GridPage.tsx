@@ -4,7 +4,7 @@ import { addVectors, createVector, Vector } from 'simple-vectors';
 
 import { Grid } from '../Grid/Grid';
 import { GridControls } from '../Grid/GridControls/GridControls';
-import { GridState } from '../Grid/GridInfo/GridInfo';
+import { GridInfo } from '../Grid/GridInfo/GridInfo';
 import { OffsetControlButton } from '../Grid/GridControls/OffsetControlButton';
 import { Directions, Pieces } from '../../types';
 
@@ -79,6 +79,11 @@ export const GridPage: FC<{
     );
   };
 
+  const handleHome = (): void => {
+    setDimensions(initialGridDimensions);
+    setOffset(initialOffset);
+  };
+
   const handleZoomOut = (): void => {
     if (largestSize.x <= dimensions.x || largestSize.y <= dimensions.y) {
       return;
@@ -113,8 +118,12 @@ export const GridPage: FC<{
         />
       </GridWrapper>
       <GridFooterWrapper>
-        <GridState dimensions={dimensions} offset={offset} />
-        <GridControls onZoomIn={handleZoomIn} onZoomOut={handleZoomOut} />
+        <GridInfo dimensions={dimensions} offset={offset} />
+        <GridControls
+          onZoomIn={handleZoomIn}
+          onHome={handleHome}
+          onZoomOut={handleZoomOut}
+        />
       </GridFooterWrapper>
     </StyledGridPage>
   );
