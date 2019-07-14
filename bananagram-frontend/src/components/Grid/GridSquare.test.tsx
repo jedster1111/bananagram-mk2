@@ -9,7 +9,7 @@ describe('GridSquare', () => {
   const handleSquareClick = jest.fn();
   const defaultProps = {
     position,
-    handleSquareClick
+    handleSquareClick,
   };
 
   describe('value', () => {
@@ -19,7 +19,7 @@ describe('GridSquare', () => {
           {...defaultProps}
           squareData={{
             piece: { id: '1', value: 'someValue' },
-            isSelected: false
+            isSelected: false,
           }}
         />
       );
@@ -33,7 +33,7 @@ describe('GridSquare', () => {
           {...defaultProps}
           squareData={{
             piece: { id: '1', value: <div>someValue</div> },
-            isSelected: false
+            isSelected: false,
           }}
         />
       );
@@ -66,7 +66,7 @@ describe('GridSquare', () => {
   describe('handleSquareClick', () => {
     const squareData = {
       piece: { id: '1', value: 'someValue' },
-      isSelected: true
+      isSelected: true,
     };
     const metaKey = true;
 

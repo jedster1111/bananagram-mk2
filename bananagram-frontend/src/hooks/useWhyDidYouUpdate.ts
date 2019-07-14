@@ -25,7 +25,7 @@ export function useWhyDidYouUpdate(
           // Add to changesObj
           changesObj[key] = {
             from: current[key],
-            to: props[key]
+            to: props[key],
           };
         }
       });

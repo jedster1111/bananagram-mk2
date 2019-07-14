@@ -11,7 +11,7 @@ describe('OffsetControlButton', () => {
     ['up', '\u2191', createVector(0, -1)],
     ['right', '\u2192', createVector(1, 0)],
     ['down', '\u2193', createVector(0, 1)],
-    ['left', '\u2190', createVector(-1, 0)]
+    ['left', '\u2190', createVector(-1, 0)],
   ])('When the direction is %s', (direction, arrow, vector) => {
     it(`should have text ${arrow}`, () => {
       const { getByText } = render(

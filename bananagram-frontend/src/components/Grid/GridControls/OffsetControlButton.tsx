@@ -9,14 +9,14 @@ export const arrowDirectionMap: { [key in Directions]: string } = {
   up: '\u2191',
   right: '\u2192',
   down: '\u2193',
-  left: '\u2190'
+  left: '\u2190',
 };
 
 const vectorDirectionMap: { [key in Directions]: Vector } = {
   up: createVector(0, -1),
   right: createVector(1, 0),
   down: createVector(0, 1),
-  left: createVector(-1, 0)
+  left: createVector(-1, 0),
 };
 
 const OffsetControlContainer = styled.div<{ direction: Directions }>`

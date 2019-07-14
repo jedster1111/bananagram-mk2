@@ -19,7 +19,7 @@ const AppWrapper = styled.div`
 const pieces = {
   [createVectorKey(1, 1)]: { id: '1', value: <div>1,1</div> },
   [createVectorKey(0, 5)]: { id: '2', value: '0,5' },
-  [createVectorKey(4, 7)]: { id: '3', value: '4,7' }
+  [createVectorKey(4, 7)]: { id: '3', value: '4,7' },
 };
 
 const App: React.FC = () => {

@@ -13,7 +13,7 @@ describe('createSquares', () => {
     const pieces: Pieces = {
       [createVectorKey(0, 0)]: { id: '1', value: '0-0' },
       [createVectorKey(1, 2)]: { id: '2', value: '1-2' },
-      [createVectorKey(3, 4)]: { id: '3', value: '3-4' }
+      [createVectorKey(3, 4)]: { id: '3', value: '3-4' },
     };
 
     const squares = createSquares(
@@ -30,11 +30,11 @@ describe('createSquares', () => {
     expect(squares[0][0]).toEqual({ piece: pieces['0,0'], isSelected: true });
     expect(squares[2][1]).toEqual({
       piece: pieces['1,2'],
-      isSelected: false
+      isSelected: false,
     });
     expect(squares[4][3]).toEqual({
       piece: pieces['3,4'],
-      isSelected: false
+      isSelected: false,
     });
   });
 });

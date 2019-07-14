@@ -38,6 +38,6 @@ function createSquareData(
 ): SquareData {
   return {
     piece,
-    isSelected
+    isSelected,
   };
 }
