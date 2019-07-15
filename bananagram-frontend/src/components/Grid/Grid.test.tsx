@@ -18,10 +18,10 @@ describe('Grid', () => {
         [createVectorKey(0, 0)]: { id: '1', value: '0-0' },
         [createVectorKey(1, 2)]: {
           id: '2',
-          value: '1-2'
+          value: '1-2',
         },
-        [createVectorKey(3, 4)]: { id: '3', value: '3-4' }
-      }
+        [createVectorKey(3, 4)]: { id: '3', value: '3-4' },
+      },
     };
 
     it('should render an empty grid', () => {
@@ -42,9 +42,9 @@ describe('Grid', () => {
         [createVectorKey(0, 0)]: { id: '1', value: '0-0' },
         [createVectorKey(1, 2)]: {
           id: '2',
-          value: '1-2'
+          value: '1-2',
         },
-        [createVectorKey(3, 4)]: { id: '3', value: '3-4' }
+        [createVectorKey(3, 4)]: { id: '3', value: '3-4' },
       };
 
       const { getAllByTestId } = render(

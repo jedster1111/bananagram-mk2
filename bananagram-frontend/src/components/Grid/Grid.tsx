@@ -4,7 +4,7 @@ import React, {
   memo,
   SetStateAction,
   useCallback,
-  useState
+  useState,
 } from 'react';
 import styled from 'styled-components';
 import { createVector, Vector } from 'simple-vectors';

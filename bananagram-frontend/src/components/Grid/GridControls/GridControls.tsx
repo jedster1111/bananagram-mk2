@@ -23,7 +23,7 @@ const ControlButtonsWrapper = styled.div`
 export const GridControls: FC<GridControlsProps> = ({
   onZoomIn,
   onHome,
-  onZoomOut
+  onZoomOut,
 }) => (
   <GridControlsWrapper>
     <ControlButtonsWrapper>

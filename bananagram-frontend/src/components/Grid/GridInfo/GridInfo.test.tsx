@@ -7,7 +7,7 @@ import { GridInfo } from './GridInfo';
 describe('GridInfo', () => {
   const defaultProps = {
     dimensions: createVector(10, 10),
-    offset: createVector(2, 1)
+    offset: createVector(2, 1),
   };
   it('should render the camera offset in the format x, y', () => {
     const { getByText } = render(<GridInfo {...defaultProps} />);

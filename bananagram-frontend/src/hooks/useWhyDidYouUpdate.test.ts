@@ -13,14 +13,14 @@ describe('useWhyDidYouUpdate', () => {
     const { rerender } = renderHook(
       props => useWhyDidYouUpdate('testComponent', props),
       {
-        initialProps
+        initialProps,
       }
     );
 
     rerender({
       someProp: 'newValue',
       someNewProp: 'newProp',
-      otherProp: 'otherProp'
+      otherProp: 'otherProp',
     });
 
     expect(spiedLog).toHaveBeenCalledWith(
@@ -28,7 +28,7 @@ describe('useWhyDidYouUpdate', () => {
       'testComponent',
       {
         someNewProp: { from: undefined, to: 'newProp' },
-        someProp: { from: 'initialValue', to: 'newValue' }
+        someProp: { from: 'initialValue', to: 'newValue' },
       }
     );
   });
@@ -37,7 +37,7 @@ describe('useWhyDidYouUpdate', () => {
     const { rerender } = renderHook(
       props => useWhyDidYouUpdate('testComponent', props),
       {
-        initialProps
+        initialProps,
       }
     );
 

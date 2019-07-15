@@ -24,7 +24,7 @@ const StyledGridRow = styled.div`
 const GridRow: FC<GridRowProps> = ({
   rowData,
   rowIndex,
-  handleSquareClick
+  handleSquareClick,
 }) => {
   return (
     <StyledGridRow data-testid={rowIndex}>
