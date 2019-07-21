@@ -4,20 +4,23 @@ pipeline {
       image 'node:12.6.0-alpine'
     }
   }
+
+  options {
+        lock resource: 'bananagram_lock'
+  }
+
   stages {
-    lock("no-concurrent-lock"){
-      stage('Install dependencies') {
-        steps {
-          sh "yarn"
-        }
+    stage('Install dependencies') {
+      steps {
+        sh "yarn"
       }
-      stage('Front-End Unit Tests') {
-        steps {
-          sh '''
-            cd bananagram-frontend
-            yarn test:ci
-          '''
-        }
+    }
+    stage('Front-End Unit Tests') {
+      steps {
+        sh '''
+          cd bananagram-frontend
+          yarn test:ci
+        '''
       }
     }
   }
