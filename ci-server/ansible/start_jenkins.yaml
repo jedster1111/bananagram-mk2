@@ -1,0 +1,46 @@
+- hosts: all
+  remote_user: jed
+
+  tasks:
+    - name: Install 'python3-distutils'
+      apt:
+        name: python3-distutils
+        state: latest
+
+    - name: Download `get-pip.py`
+      get_url:
+        url: https://bootstrap.pypa.io/get-pip.py
+        dest: /tmp/get-pip.py
+
+    - name: Install `pip` 
+      command: "python3 get-pip.py"
+      args:
+        chdir: /tmp
+
+    - name: Uninstall 'docker-py'
+      pip:
+        name: docker-py
+        state: absent
+
+    - name: Install 'docker'
+      pip:
+        name: docker
+        state: latest
+
+    - name: Build the Jenkins image
+      docker_image:
+        name: jedster1111/jenkins
+        build:
+          path: /tmp
+        source: build
+    
+    - name: Run the Jenkins container
+      docker_container:
+          name: jenkins
+          image: jedster1111/jenkins:latest
+          published_ports:
+            - '8080:8080'
+            - '50000:50000'
+          volumes: jenkins_home:/var/jenkins_home
+          state: started
+          detach: yes

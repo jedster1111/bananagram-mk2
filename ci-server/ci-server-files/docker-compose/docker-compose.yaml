@@ -1,0 +1,56 @@
+version: "3"
+services:
+  nginx-proxy:
+    image: "jwilder/nginx-proxy:alpine"
+    labels:
+      - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/var/run/docker.sock:/tmp/docker.sock:ro"
+      - "certs:/etc/nginx/certs"
+      - "nginx-vhost:/etc/nginx/vhost.d"
+      - "nginx-html:/usr/share/nginx/html"
+    restart: always    
+  
+  nginx-proxy-letsencrypt:
+    image: "jrcs/letsencrypt-nginx-proxy-companion:latest"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "certs:/etc/nginx/certs"
+      - "nginx-vhost:/etc/nginx/vhost.d"
+      - "nginx-html:/usr/share/nginx/html"
+    environment:
+      - "DEFAULT_EMAIL=jedster1111@hotmail.co.uk"
+    depends_on:
+      - "nginx-proxy"
+    restart: always    
+
+  jenkins:
+    build:
+      context: "../../dockerfiles/jenkins"
+      args:
+        dockergid: "${DOCKER_GID}"
+    image: "jedster1111/jenkins"
+    expose:
+      - "8080"
+      - "50000"
+    environment:
+      - "VIRTUAL_PORT=8080"
+      - "VIRTUAL_HOST=jenkins.bananagram.jedthompson.co.uk"
+      - "LETSENCRYPT_HOST=jenkins.bananagram.jedthompson.co.uk"
+    volumes:
+      - "jenkins-home:/var/jenkins_home"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "/usr/bin/docker:/usr/bin/docker"
+    depends_on:
+      - "nginx-proxy-letsencrypt"
+    restart: always
+
+volumes:
+  certs:
+  nginx-vhost:
+  nginx-html:
+  jenkins-home:
+
