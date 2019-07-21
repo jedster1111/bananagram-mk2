@@ -8,9 +8,15 @@ pipeline {
   stages {
     stage('Install dependencies') {
       steps {
-        sh '''yarn;
-cd bananagram-frontend;
-yarn test:ci;'''
+        sh "yarn"
+      }
+    }
+    stage('Front-End Unit Tests') {
+      steps {
+        sh ```
+          cd bananagram-frontend
+          yarn test:ci
+        ```
       }
     }
   }

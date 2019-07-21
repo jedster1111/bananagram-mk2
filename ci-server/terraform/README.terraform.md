@@ -14,12 +14,3 @@ chmod +x ~/.terraform.d/plugins/terraform-provider-namecheap
 Init terraform: `terraform init`
 
 Create ssh key and add to Digital Ocean account
-
-## Create Digital Ocean Server
-
-```sh
-export TF_VAR_token=Your_Digital_Ocean_Api_Token
-export TF_VAR_ssh_fingerprint=Your_SSH_Fingerprint
-```
-
-
