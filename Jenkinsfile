@@ -3,7 +3,9 @@ pipeline {
     docker {
       image 'node:12.6.0-alpine'
     }
-
+  }
+  options {
+    disableConcurrentBuilds()
   }
   stages {
     stage('Install dependencies') {
