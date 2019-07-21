@@ -13,10 +13,10 @@ pipeline {
     }
     stage('Front-End Unit Tests') {
       steps {
-        sh ```
+        sh '''
           cd bananagram-frontend
           yarn test:ci
-        ```
+        '''
       }
     }
   }
