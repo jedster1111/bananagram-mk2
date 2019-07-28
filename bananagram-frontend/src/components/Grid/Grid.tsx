@@ -59,7 +59,11 @@ export const Grid: FC<GridProps> = memo(
     );
 
     return (
-      <GridWrapper>
+      <GridWrapper
+        data-testid="grid"
+        data-offset={offset.toString()}
+        data-dimensions={dimensions.toString()}
+      >
         {squares.map((rowData, rowIndex) => (
           <MemoGridRow
             key={rowIndex}

@@ -69,6 +69,10 @@ export const GridPage: FC<{
 }> = ({ initialGridDimensions = createVector(10, 10), pieces = {} }) => {
   const [dimensions, setDimensions] = useState<Vector>(initialGridDimensions);
   const [offset, setOffset] = useState<Vector>(initialOffset);
+  const [dimensionsSaved, setDimensionsSaved] = useState<Vector>(
+    initialGridDimensions
+  );
+  const [offsetSaved, setOffsetSaved] = useState<Vector>(initialOffset);
 
   const handleZoomIn = (): void => {
     if (dimensions.x <= smallestSize.x || dimensions.y <= smallestSize.y) {
@@ -79,9 +83,19 @@ export const GridPage: FC<{
     );
   };
 
+  const handleSave = (): void => {
+    setDimensionsSaved(dimensions);
+    setOffsetSaved(offset);
+  };
+
   const handleHome = (): void => {
     setDimensions(initialGridDimensions);
     setOffset(initialOffset);
+  };
+
+  const handleRestore = (): void => {
+    setDimensions(dimensionsSaved);
+    setOffset(offsetSaved);
   };
 
   const handleZoomOut = (): void => {
@@ -121,8 +135,16 @@ export const GridPage: FC<{
         <GridInfo dimensions={dimensions} offset={offset} />
         <GridControls
           onZoomIn={handleZoomIn}
+          onSave={handleSave}
           onHome={handleHome}
+          onRestore={handleRestore}
           onZoomOut={handleZoomOut}
+          offset={offset}
+          dimensions={dimensions}
+          offsetSaved={offsetSaved}
+          dimensionsSaved={dimensionsSaved}
+          initialOffset={initialOffset}
+          initialGridDimensions={initialGridDimensions}
         />
       </GridFooterWrapper>
     </StyledGridPage>

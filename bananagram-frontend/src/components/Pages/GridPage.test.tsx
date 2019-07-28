@@ -10,86 +10,80 @@ import { GridPage } from './GridPage';
 describe('GridPage', () => {
   describe('GridControls', () => {
     it('should zoom IN when I press the + button', () => {
-      const { getAllByTestId, getByText } = render(<GridPage />);
+      const { getByTestId, getByText } = render(<GridPage />);
 
-      const squares = getAllByTestId('grid-square');
-      expect(squares).toHaveLength(createVector(10, 10).getArea());
+      const grid = getByTestId('grid');
+      expect(grid).toHaveAttribute('data-dimensions', '10,10');
 
       const zoomInButton = getByText(/^\+$/);
       fireEvent.click(zoomInButton);
 
-      const squaresAfterClick = getAllByTestId('grid-square');
-      expect(squaresAfterClick).toHaveLength(createVector(9, 9).getArea());
+      const gridAfterClick = getByTestId('grid');
+      expect(gridAfterClick).toHaveAttribute('data-dimensions', '9,9');
     });
 
     it('should zoom OUT when I press the - button', () => {
-      const { getAllByTestId, getByText } = render(<GridPage />);
+      const { getByTestId, getByText } = render(<GridPage />);
 
-      const squares = getAllByTestId('grid-square');
-      expect(squares).toHaveLength(createVector(10, 10).getArea());
+      const grid = getByTestId('grid');
+      expect(grid).toHaveAttribute('data-dimensions', '10,10');
 
-      const zoomInButton = getByText(/^-$/);
-      fireEvent.click(zoomInButton);
+      const zoomOutButton = getByText(/^-$/);
+      fireEvent.click(zoomOutButton);
 
-      const squaresAfterClick = getAllByTestId('grid-square');
-      expect(squaresAfterClick).toHaveLength(createVector(11, 11).getArea());
+      const gridAfterClick = getByTestId('grid');
+      expect(gridAfterClick).toHaveAttribute('data-dimensions', '11,11');
     });
 
     it('should stop you from zooming further in than a 3x3 square', () => {
       const initialDimensions = createVector(3, 3);
-      const { getAllByTestId, getByText } = render(
+      const { getByTestId, getByText } = render(
         <GridPage initialGridDimensions={initialDimensions} />
       );
-
-      const squares = getAllByTestId('grid-square');
-      expect(squares).toHaveLength(initialDimensions.getArea());
 
       const zoomInButton = getByText(/^\+$/);
       fireEvent.click(zoomInButton);
 
-      const squaresAfterClick = getAllByTestId('grid-square');
-      expect(squaresAfterClick).toHaveLength(initialDimensions.getArea());
+      const gridAfterClick = getByTestId('grid');
+      expect(gridAfterClick).toHaveAttribute('data-dimensions', '3,3');
     });
 
     it('should stop you from zooming out further than a 35x35 square', () => {
       const initialDimensions = createVector(35, 35);
-      const { getAllByTestId, getByText } = render(
+      const { getByTestId, getByText } = render(
         <GridPage initialGridDimensions={initialDimensions} />
       );
 
       const zoomOutButton = getByText(/^-$/);
       fireEvent.click(zoomOutButton);
 
-      const squaresAfterClick = getAllByTestId('grid-square');
-      expect(squaresAfterClick).toHaveLength(initialDimensions.getArea());
+      const gridAfterClick = getByTestId('grid');
+      expect(gridAfterClick).toHaveAttribute('data-dimensions', '35,35');
     });
 
-    it('should render the current offset and dimension', () => {
-      const { getByText } = render(<GridPage />);
-
-      getByText('0, 0');
-      getByText('10x10', { exact: false });
-    });
-
-    it('home button should reset camera 0,0 dimension 10,10', () => {
-      const { getByText } = render(<GridPage />);
+    it('on save restore value set to save value', () => {
+      const { getByTestId, getByText } = render(<GridPage />);
 
       const zoomOutButton = getByText(/^-$/);
       fireEvent.click(zoomOutButton);
 
-      getByText('0, 0');
-      getByText('11x11', { exact: false });
+      const saveButton = getByText(/^Save/);
+      fireEvent.click(saveButton);
 
-      fireEvent.click(getByText(arrowDirectionMap.right));
+      const restoreButton = getByText(/^Restore/);
+      expect(restoreButton).toHaveTextContent(/0, 0/);
+      expect(restoreButton).toHaveTextContent(/11x11/);
 
-      getByText('1, 0');
-      getByText('11x11', { exact: false });
-
-      const homeButton = getByText(/^Home$/);
+      const homeButton = getByText(/^Home/);
       fireEvent.click(homeButton);
 
-      getByText('0, 0');
-      getByText('10x10', { exact: false });
+      const gridAfterClick = getByTestId('grid');
+      expect(gridAfterClick).toHaveAttribute('data-dimensions', '10,10');
+
+      fireEvent.click(restoreButton);
+
+      const gridAfterRestore = getByTestId('grid');
+      expect(gridAfterRestore).toHaveAttribute('data-dimensions', '11,11');
     });
   });
 
