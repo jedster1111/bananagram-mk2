@@ -22,7 +22,7 @@ describe('GridPage', () => {
       expect(gridAfterClick).toHaveAttribute('data-dimensions', '9,9');
     });
 
-    it.only('should zoom OUT when I press the - button', () => {
+    it('should zoom OUT when I press the - button', () => {
       const { getByTestId, getByText } = render(<GridPage />);
 
       const grid = getByTestId('grid');
@@ -62,14 +62,28 @@ describe('GridPage', () => {
     });
 
     it('on save restore value set to save value', () => {
-      const { getByText } = render(<GridPage />);
+      const { getByTestId, getByText } = render(<GridPage />);
+
+      const zoomOutButton = getByText(/^-$/);
+      fireEvent.click(zoomOutButton);
 
       const saveButton = getByText(/^Save/);
       fireEvent.click(saveButton);
 
       const restoreButton = getByText(/^Restore/);
       expect(restoreButton).toHaveTextContent(/0, 0/);
-      expect(restoreButton).toHaveTextContent(/10x10/);
+      expect(restoreButton).toHaveTextContent(/11x11/);
+
+      const homeButton = getByText(/^Home/);
+      fireEvent.click(homeButton);
+
+      const gridAfterClick = getByTestId('grid');
+      expect(gridAfterClick).toHaveAttribute('data-dimensions', '10,10');
+
+      fireEvent.click(restoreButton);
+
+      const gridAfterRestore = getByTestId('grid');
+      expect(gridAfterRestore).toHaveAttribute('data-dimensions', '11,11');
     });
   });
 
