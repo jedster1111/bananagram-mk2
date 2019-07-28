@@ -1,6 +1,5 @@
 {
-  "eslint.workingDirectories": ["./bananagram-frontend"],
-  "eslint.options": { "configFile": ".eslintrc.json" },
+  "eslint.workingDirectories": ["./packages/bananagram-frontend", "./packages/game-service"],
   "eslint.validate": [
     "javascript",
     "javascriptreact",
