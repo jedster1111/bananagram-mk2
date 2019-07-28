@@ -18,7 +18,7 @@ pipeline {
     stage('Front-End Unit Tests') {
       steps {
         sh '''
-          cd bananagram-frontend
+          cd packages/bananagram-frontend
           yarn test:ci
         '''
       }
