@@ -1,7 +1,7 @@
 {
   "private": true,
   "workspaces": [
-    "bananagram-frontend"
+    "packages/*"
   ],
   "name": "bananagram",
   "version": "1.0.0",
@@ -13,7 +13,7 @@
     "husky": "^2.4.0"
   },
   "scripts": {
-    "lint:check": "cd bananagram-frontend && yarn lint:check"
+    "lint:check": "cd packages/bananagram-frontend && yarn lint:check"
   },
   "husky": {
     "hooks": {
