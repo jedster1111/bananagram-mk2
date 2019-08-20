@@ -17,6 +17,6 @@ jobs:
         
     - name: Test banangram-frontend
       run: |
-        cd packages/bananagram-frontend
         yarn install
+        cd packages/bananagram-frontend
         yarn test
