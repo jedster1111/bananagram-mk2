@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout ${{ GITHUB_REPOSITORY }}
+    - name: Checkout ${GITHUB_REPOSITORY}
       uses: actions/checkout@v1
     
     - name: Use Node.js
