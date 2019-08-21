@@ -1,22 +1,24 @@
-name: Node CI
+name: CI
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
-  build:
-
+  Test:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - name: Checkout ${{ GITHUB_REPOSITORY }}
+      uses: actions/checkout@v1
     
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
         node-version: '10.x'
         
+    - name: Install dependencies
+      run: yarn install
+    
     - name: Test banangram-frontend
       run: |
-        yarn install
         cd packages/bananagram-frontend
         yarn test:ci
