@@ -10,6 +10,10 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v1
 
+    - name: Check commits in Pull Request contain Issue reference
+      if: github.event_name == 'pull_request'
+      uses: jedster1111/pr-lint-action@GH-1
+
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
