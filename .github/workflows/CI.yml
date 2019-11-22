@@ -7,16 +7,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v1
-
     - name: Check commits in Pull Request contain Issue reference
       if: github.event_name == 'pull_request'
       uses: vijaykramesh/pr-lint-action@d7c8423032952c7616eb056009e549053e7966e8
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Use Node.js
+      
+      uses: actions/checkout@v1
       uses: actions/setup-node@v1
       with:
         node-version: '10.x'
