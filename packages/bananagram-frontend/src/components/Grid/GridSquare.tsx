@@ -1,4 +1,4 @@
-import React, { FC, KeyboardEvent, memo, MouseEvent } from 'react';
+import React, { FC, KeyboardEvent, memo, MouseEvent, ReactNode } from 'react';
 import styled from 'styled-components';
 
 import { SquareData } from './gridTypes';
@@ -33,16 +33,15 @@ const StyledGridSquare = styled.div<{
 
   &:focus {
     outline: 1px dotted #212121;
-    outline: 5px auto -webkit-focus-ring-color;
     outline-width: ${({ isSelected }) => (isSelected ? '8px' : 'initial')};
   }
 `;
 
 const GridSquare: FC<GridSquareProps> = ({ squareData, handleSquareClick }) => {
   const piece = squareData.piece;
-  const value = squareData.piece && squareData.piece.value;
+  const value: ReactNode = squareData.piece?.value;
   const handleSquareSelect = (e: MouseEvent | KeyboardEvent): void => {
-    handleSquareClick(piece && piece.id, squareData.isSelected, e.metaKey);
+    handleSquareClick(piece?.id, squareData.isSelected, e.shiftKey);
   };
   const isPiece = Boolean(squareData.piece);
 

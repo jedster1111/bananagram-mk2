@@ -13,6 +13,8 @@
     "husky": "^2.4.0"
   },
   "scripts": {
+    "test": "yarn workspaces run test",
+    "test:ci": "yarn workspaces run test:ci",
     "lint:check": "yarn workspaces run lint:check"
   },
   "husky": {
