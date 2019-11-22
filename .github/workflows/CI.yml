@@ -12,7 +12,7 @@ jobs:
 
     - name: Check commits in Pull Request contain Issue reference
       if: github.event_name == 'pull_request'
-      uses: jedster1111/pr-lint-action@GH-1
+      uses: vijaykramesh/pr-lint-action@d7c8423032952c7616eb056009e549053e7966e8
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
