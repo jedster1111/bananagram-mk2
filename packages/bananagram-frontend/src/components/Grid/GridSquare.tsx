@@ -12,10 +12,12 @@ interface GridSquareProps {
   ) => void;
 }
 
-const StyledGridSquare = styled.div<{
+interface StyledGridSquareProps {
   isSelected: boolean;
   isPiece: boolean;
-}>`
+}
+
+const StyledGridSquare = styled.div<StyledGridSquareProps>`
   flex: 1;
 
   display: flex;
