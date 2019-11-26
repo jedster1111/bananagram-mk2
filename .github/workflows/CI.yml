@@ -1,0 +1,27 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  Test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check commits in Pull Request contain Issue reference
+      if: github.event_name == 'pull_request'
+      uses: vijaykramesh/pr-lint-action@d7c8423032952c7616eb056009e549053e7966e8
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+        
+    - name: Install dependencies
+      run: yarn install
+    
+    - name: Test banangram-frontend
+      run: |
+        cd packages/bananagram-frontend
+        yarn test:ci

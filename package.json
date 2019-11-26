@@ -13,7 +13,7 @@
     "husky": "^2.4.0"
   },
   "scripts": {
-    "lint:check": "cd packages/bananagram-frontend && yarn lint:check"
+    "lint:check": "yarn workspaces run lint:check"
   },
   "husky": {
     "hooks": {
