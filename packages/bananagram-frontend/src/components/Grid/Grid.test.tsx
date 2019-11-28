@@ -5,9 +5,9 @@ import { createVector, createVectorKey } from 'simple-vectors';
 import { Pieces } from '../../types';
 import { getSquareIndex } from '../../utils/test/getSquareIndex';
 
-import { Grid } from './Grid';
+import { MemoGrid } from './Grid';
 
-const cmdClickOptions: Partial<MouseEvent> = { metaKey: true };
+const cmdClickOptions: Partial<MouseEvent> = { shiftKey: true };
 
 describe('Grid', () => {
   describe('Grid', () => {
@@ -26,7 +26,7 @@ describe('Grid', () => {
 
     it('should render an empty grid', () => {
       const { getAllByTestId } = render(
-        <Grid {...defaultProps} pieces={undefined} />
+        <MemoGrid {...defaultProps} pieces={undefined} />
       );
 
       const squares = getAllByTestId('grid-square');
@@ -48,7 +48,7 @@ describe('Grid', () => {
       };
 
       const { getAllByTestId } = render(
-        <Grid {...defaultProps} pieces={pieces} />
+        <MemoGrid {...defaultProps} pieces={pieces} />
       );
 
       const squares = getAllByTestId('grid-square');
@@ -66,7 +66,7 @@ describe('Grid', () => {
 
     describe('handleClickingSquare', () => {
       it('should select a square if I click on it. If I click on a second, should deselect the first', () => {
-        const { getByText } = render(<Grid {...defaultProps} />);
+        const { getByText } = render(<MemoGrid {...defaultProps} />);
 
         const firstSquareToClick = getByText('0-0');
         const secondSquareToClick = getByText('1-2');
@@ -83,7 +83,7 @@ describe('Grid', () => {
       });
 
       it("should allow me to select multiple squares by holding the 'CMD' button", () => {
-        const { getByText } = render(<Grid {...defaultProps} />);
+        const { getByText } = render(<MemoGrid {...defaultProps} />);
 
         const firstSquareToClick = getByText('0-0');
         const secondSquareToClick = getByText('1-2');
@@ -99,7 +99,7 @@ describe('Grid', () => {
       describe('clicking an empty square', () => {
         it("should deselect squares if 'CMD' is NOT pressed", () => {
           const { getByText, getAllByTestId } = render(
-            <Grid {...defaultProps} />
+            <MemoGrid {...defaultProps} />
           );
 
           const squares = getAllByTestId('grid-square');
@@ -117,7 +117,7 @@ describe('Grid', () => {
 
         it("should NOT deselect squares if 'CMD' is pressed", () => {
           const { getByText, getAllByTestId } = render(
-            <Grid {...defaultProps} />
+            <MemoGrid {...defaultProps} />
           );
 
           const squares = getAllByTestId('grid-square');
@@ -134,7 +134,7 @@ describe('Grid', () => {
       });
 
       it('should deselect a selected square if I click while CMD is pressed', () => {
-        const { getByText } = render(<Grid {...defaultProps} />);
+        const { getByText } = render(<MemoGrid {...defaultProps} />);
 
         const firstSquareToClick = getByText('0-0');
         const secondSquareToClick = getByText('1-2');

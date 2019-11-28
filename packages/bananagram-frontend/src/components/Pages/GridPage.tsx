@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import styled from 'styled-components';
 import { addVectors, createVector, Vector } from 'simple-vectors';
 
-import { Grid } from '../Grid/Grid';
+import { MemoGrid } from '../Grid/Grid';
 import { GridControls } from '../Grid/GridControls/GridControls';
 import { GridInfo } from '../Grid/GridInfo/GridInfo';
 import { OffsetControlButton } from '../Grid/GridControls/OffsetControlButton';
@@ -124,7 +124,7 @@ export const GridPage: FC<{
     <StyledGridPage>
       <GridWrapper>
         {directionButtons}
-        <Grid
+        <MemoGrid
           dimensions={dimensions}
           pieces={pieces}
           offset={offset}

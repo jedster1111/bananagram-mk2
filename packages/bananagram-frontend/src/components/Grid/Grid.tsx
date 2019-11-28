@@ -35,55 +35,60 @@ export const GridWrapper = styled.div`
   border: solid 1px black;
 `;
 
-export const Grid: FC<GridProps> = memo(
-  ({ pieces = {}, offset = createVector(0, 0), dimensions, invertOffset }) => {
-    const [selectedPieces, setSelectedPieces] = useState<SelectedPieces>({});
+const Grid: FC<GridProps> = ({
+  pieces = {},
+  offset = createVector(0, 0),
+  dimensions,
+  invertOffset,
+}) => {
+  const [selectedPieces, setSelectedPieces] = useState<SelectedPieces>({});
 
-    const handleSquareClick = useCallback(
-      (id: string | undefined, isSelected: boolean, isCmdPressed: boolean) => {
-        if (!id) {
-          handleClickingEmptySquare(isCmdPressed, setSelectedPieces);
-        } else {
-          handleClickingSquare(isCmdPressed, isSelected, setSelectedPieces, id);
-        }
-      },
-      []
-    );
+  const handleSquareClick = useCallback(
+    (id: string | undefined, isSelected: boolean, isShiftPressed: boolean) => {
+      if (!id) {
+        handleClickingEmptySquare(isShiftPressed, setSelectedPieces);
+      } else {
+        handleClickingSquare(isShiftPressed, isSelected, setSelectedPieces, id);
+      }
+    },
+    []
+  );
 
-    const squares = createSquares(
-      pieces,
-      selectedPieces,
-      dimensions,
-      offset,
-      invertOffset
-    );
+  const squares = createSquares(
+    pieces,
+    selectedPieces,
+    dimensions,
+    offset,
+    invertOffset
+  );
 
-    return (
-      <GridWrapper
-        data-testid="grid"
-        data-offset={offset.toString()}
-        data-dimensions={dimensions.toString()}
-      >
-        {squares.map((rowData, rowIndex) => (
-          <MemoGridRow
-            key={rowIndex}
-            rowData={rowData}
-            rowIndex={rowIndex}
-            handleSquareClick={handleSquareClick}
-          />
-        ))}
-      </GridWrapper>
-    );
-  }
-);
+  return (
+    <GridWrapper
+      data-testid="grid"
+      data-offset={offset.toString()}
+      data-dimensions={dimensions.toString()}
+    >
+      {squares.map((rowData, rowIndex) => (
+        <MemoGridRow
+          key={rowIndex}
+          rowData={rowData}
+          rowIndex={rowIndex}
+          handleSquareClick={handleSquareClick}
+        />
+      ))}
+    </GridWrapper>
+  );
+};
+
+export const MemoGrid = memo(Grid);
 
 function handleClickingSquare(
-  isCmdPressed: boolean,
+  isShiftPressed: boolean,
   isSelected: boolean,
   setSelectedPieces: Dispatch<SetStateAction<SelectedPieces>>,
   id: string
 ): void {
-  if (isCmdPressed) {
+  if (isShiftPressed) {
     if (isSelected) {
       setSelectedPieces(prevState => removeSelectedPieceById(prevState, id));
     } else {
@@ -102,10 +107,10 @@ function addSelectedPiece(
 }
 
 function handleClickingEmptySquare(
-  isCmdPressed: boolean,
+  isShiftPressed: boolean,
   setSelectedPieces: (newSelectedPieces: SelectedPieces) => void
 ): void {
-  if (!isCmdPressed) {
+  if (!isShiftPressed) {
     setSelectedPieces({});
   }
   return;

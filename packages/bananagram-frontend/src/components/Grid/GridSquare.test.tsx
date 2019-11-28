@@ -68,7 +68,7 @@ describe('GridSquare', () => {
       piece: { id: '1', value: 'someValue' },
       isSelected: true,
     };
-    const metaKey = true;
+    const shiftKey = true;
 
     it('should get called onClick', () => {
       const { getByTestId } = render(
@@ -77,12 +77,12 @@ describe('GridSquare', () => {
 
       const square = getByTestId('grid-square');
 
-      fireEvent.click(square, { metaKey });
+      fireEvent.click(square, { shiftKey });
 
       expect(handleSquareClick).toHaveBeenCalledWith(
         squareData.piece.id,
         squareData.isSelected,
-        metaKey
+        shiftKey
       );
     });
     it('should get called onClick', () => {
@@ -92,12 +92,12 @@ describe('GridSquare', () => {
 
       const square = getByTestId('grid-square');
 
-      fireEvent.click(square, { metaKey });
+      fireEvent.click(square, { shiftKey });
 
       expect(handleSquareClick).toHaveBeenCalledWith(
         squareData.piece.id,
         squareData.isSelected,
-        metaKey
+        shiftKey
       );
     });
 
@@ -108,12 +108,12 @@ describe('GridSquare', () => {
 
       const square = getByTestId('grid-square');
 
-      fireEvent.keyDown(square, { key: 'Enter', metaKey });
+      fireEvent.keyDown(square, { key: 'Enter', shiftKey });
 
       expect(handleSquareClick).toHaveBeenCalledWith(
         squareData.piece.id,
         squareData.isSelected,
-        metaKey
+        shiftKey
       );
     });
   });
