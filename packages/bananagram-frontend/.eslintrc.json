@@ -1,6 +1,8 @@
 {
   "extends": [
     "eslint:recommended",
+    "plugin:jest/recommended",
+    "plugin:jest/style",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint",
@@ -11,7 +13,8 @@
     "react-hooks",
     "@typescript-eslint",
     "prettier",
-    "import"
+    "import",
+    "jest"
   ],
   "env": {
     "browser": true,
@@ -46,7 +49,8 @@
       { "functions": false }
     ],
     "@typescript-eslint/explicit-member-accessibility": 0,
-    "@typescript-eslint/no-explicit-any": 0
+    "@typescript-eslint/no-explicit-any": 0,
+    "jest/expect-expect": 0
   },
   "settings": {
     "react": {

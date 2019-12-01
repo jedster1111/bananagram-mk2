@@ -39,7 +39,7 @@ describe('GridControls', () => {
 
       fireEvent.click(plusButton);
 
-      expect(onZoomIn).toBeCalled();
+      expect(onZoomIn).toHaveBeenCalled();
     });
   });
   describe('Save Button', () => {
@@ -57,7 +57,7 @@ describe('GridControls', () => {
 
       fireEvent.click(saveButton);
 
-      expect(onSave).toBeCalled();
+      expect(onSave).toHaveBeenCalled();
     });
   });
   describe('Home Button', () => {
@@ -75,7 +75,7 @@ describe('GridControls', () => {
 
       fireEvent.click(homeButton);
 
-      expect(onHome).toBeCalled();
+      expect(onHome).toHaveBeenCalled();
     });
   });
   describe('Restore Button', () => {
@@ -93,7 +93,7 @@ describe('GridControls', () => {
 
       fireEvent.click(restoreButton);
 
-      expect(onRestore).toBeCalled();
+      expect(onRestore).toHaveBeenCalled();
     });
   });
   describe('- Button', () => {
@@ -110,7 +110,7 @@ describe('GridControls', () => {
 
       fireEvent.click(minusButton);
 
-      expect(onZoomOut).toBeCalled();
+      expect(onZoomOut).toHaveBeenCalled();
     });
   });
 });

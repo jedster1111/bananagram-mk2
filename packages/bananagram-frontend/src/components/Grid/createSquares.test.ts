@@ -24,8 +24,8 @@ describe('createSquares', () => {
       false
     );
 
-    expect(squares.length).toBe(dimension);
-    expect(squares[0].length).toBe(dimension);
+    expect(squares).toHaveLength(dimension);
+    expect(squares[0]).toHaveLength(dimension);
 
     expect(squares[0][0]).toEqual({ piece: pieces['0,0'], isSelected: true });
     expect(squares[2][1]).toEqual({
