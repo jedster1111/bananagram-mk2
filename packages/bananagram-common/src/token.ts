@@ -1,7 +1,7 @@
-import { TokenData } from './types';
+import { NumberOfTokens, TokenData } from './types';
 
 export function* tokensGenerator<T extends string>(
-  numberOfTokens: Record<T, number>
+  numberOfTokens: NumberOfTokens<T>
 ): IterableIterator<TokenData<T>> {
   let id = 0;
   for (const key in numberOfTokens) {

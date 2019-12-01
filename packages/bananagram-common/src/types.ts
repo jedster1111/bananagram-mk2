@@ -3,6 +3,8 @@ export interface TokenData<T> {
   token: T;
 }
 
+export type NumberOfTokens<T extends string> = Record<T, number>;
+
 type BananagramTokens =
   | 'a'
   | 'b'
@@ -32,7 +34,7 @@ type BananagramTokens =
   | 'z';
 type WildBananagramTokens = BananagramTokens | '*';
 
-export const numberOfBananagramTokens: Record<BananagramTokens, number> = {
+export const numberOfBananagramTokens: NumberOfTokens<BananagramTokens> = {
   a: 13,
   b: 3,
   c: 3,
@@ -61,16 +63,13 @@ export const numberOfBananagramTokens: Record<BananagramTokens, number> = {
   z: 2,
 };
 
-export const numberOfWildBananagramTokens: Record<
-  WildBananagramTokens,
-  number
-> = {
+export const numberOfWildBananagramTokens: NumberOfTokens<WildBananagramTokens> = {
   ...numberOfBananagramTokens,
   '*': 6,
 };
 
 type ChessTokens = 'K' | 'Q' | 'R' | 'N' | 'B' | 'P';
-export const numberOfChessTokens: Record<ChessTokens, number> = {
+export const numberOfChessTokens: NumberOfTokens<ChessTokens> = {
   K: 2,
   Q: 2,
   R: 4,
@@ -95,7 +94,7 @@ type DeckOfCardsTokens =
   | 'A';
 type WildDeckOfCardsTokens = DeckOfCardsTokens | 'D';
 
-export const numberOfDeckOfCardsTokens: Record<DeckOfCardsTokens, number> = {
+export const numberOfDeckOfCardsTokens: NumberOfTokens<DeckOfCardsTokens> = {
   1: 4,
   2: 4,
   3: 4,
@@ -111,10 +110,7 @@ export const numberOfDeckOfCardsTokens: Record<DeckOfCardsTokens, number> = {
   A: 4,
 };
 
-export const numberOfWildDeckOfCardsTokens: Record<
-  WildDeckOfCardsTokens,
-  number
-> = {
+export const numberOfWildDeckOfCardsTokens: NumberOfTokens<WildDeckOfCardsTokens> = {
   ...numberOfDeckOfCardsTokens,
   D: 2,
 };
