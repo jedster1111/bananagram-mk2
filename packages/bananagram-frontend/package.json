@@ -37,7 +37,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watch-all=false",
     "test:ci": "yarn lint:check && CI=true react-scripts test --coverage",
     "test:coverage": "CI=true react-scripts test --coverage",
     "lint:fix": "eslint './src/**/*.{ts,tsx}' --fix",

@@ -24,7 +24,9 @@
     "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
     "build": "tsc",
     "clean": "rm -rf dist",
-    "test": "yarn jest --verbose --coverage",
+    "test": "yarn jest --verbose",
+    "test:coverage": "yarn test --coverage",
+    "test:ci": "yarn lint:check && yarn test:coverage",
     "lint:check": "eslint './src/**/*.{ts,tsx}'"
   }
 }

@@ -21,7 +21,6 @@ jobs:
     - name: Install dependencies
       run: yarn install
     
-    - name: Test banangram-frontend
+    - name: Test packages
       run: |
-        cd packages/bananagram-frontend
         yarn test:ci
