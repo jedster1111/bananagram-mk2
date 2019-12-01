@@ -1,5 +1,7 @@
 {
   "name": "bananagram-common",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "version": "1.0.0",
   "repository": "https://github.com/jedster1111/bananagram-mk2",
   "author": "tonyt50",
@@ -23,6 +25,7 @@
   "scripts": {
     "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
     "build": "tsc",
+    "build:watch": "tsc --watch",
     "clean": "rm -rf dist",
     "test": "yarn jest --verbose",
     "test:coverage": "yarn test --coverage",
