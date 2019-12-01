@@ -1,5 +1,5 @@
 echo "Checking commit message...";
-if head -1 $1 | grep -P "^GH-\d+\s";
+if head -1 $1 | grep -e "^GH-[0-9]\+\s";
 then
   echo "Looks good!"
   exit 0;
