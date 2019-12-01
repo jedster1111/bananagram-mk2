@@ -85,21 +85,6 @@ describe('GridSquare', () => {
         shiftKey
       );
     });
-    it('should get called onClick', () => {
-      const { getByTestId } = render(
-        <MemoGridSquare {...defaultProps} squareData={squareData} />
-      );
-
-      const square = getByTestId('grid-square');
-
-      fireEvent.click(square, { shiftKey });
-
-      expect(handleSquareClick).toHaveBeenCalledWith(
-        squareData.piece.id,
-        squareData.isSelected,
-        shiftKey
-      );
-    });
 
     it("should get called onKeyDown of the 'Enter' Key", () => {
       const { getByTestId } = render(
