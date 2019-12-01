@@ -7,6 +7,7 @@
     "@types/node": "12.12.11",
     "@types/react": "16.9.11",
     "@types/react-dom": "16.9.4",
+    "bananagram-common": "1.0.0",
     "memoizee": "^0.4.14",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
