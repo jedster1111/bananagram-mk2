@@ -1,5 +1,8 @@
 {
-  "eslint.workingDirectories": ["./packages/bananagram-frontend"],
+  "eslint.workingDirectories": [
+    "./packages/bananagram-frontend",
+    "./packages/bananagram-common"
+  ],
   "eslint.validate": [
     "javascript",
     "javascriptreact",
@@ -12,10 +15,8 @@
       "autoFix": true
     }
   ],
-  "cSpell.words": [
-    "lineinfile",
-    "testid"
-  ],
+  "cSpell.words": ["lineinfile", "testid"],
+  "cSpell.diagnosticLevel": "Hint",
   "coverage-gutters.coverageReportFileName": "bananagram-frontend/coverage/**/index.html",
   "typescript.tsdk": "node_modules/typescript/lib",
   "jest.pathToJest": "yarn workspaces run test"
